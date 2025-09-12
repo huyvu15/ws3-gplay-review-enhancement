@@ -8,12 +8,6 @@ pre : " <b> 4. </b> "
 
 #### Tạo API Gateway
 
-Tại bước này ta sẽ phải tạo một API và kết nối với một lambda function để thực hiện các nhiệm vụ được setting trước.
-
-1. Tại giao diện console tìm **API Gateway**
-
-![Create VPC](/images/4-API/4.1-API/1.png?featherlight=false&width=90pc)
-
 
 
 #### Nội dung 

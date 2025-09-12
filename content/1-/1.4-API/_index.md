@@ -1,26 +1,27 @@
 ---
-title : "Về API"
+title : "Xử lý dữ liệu"
 date :  "2025-09-11" 
 weight : 4 
 chapter : false
 pre : " <b> 1.4 </b> "
 ---
 
-#### Giới thiệu API
+#### Xử lý dữ liệu
 
-**API** là viết tắt của **Application Programming Interface** (Giao diện lập trình ứng dụng), một phần mềm trung gian cho phép hai ứng dụng nói chuyện với nhau. Mỗi khi sử dụng một ứng dụng như Facebook, gửi tin nhắn tức thì hoặc kiểm tra thời tiết trên điện thoại, có nghĩa là bạn đang sử dụng **API.**
+Tuy nhiên việc xử lý dữ liệu hiện đại không chỉ đơn thuần như vậy, ngoài ra còn rất nhiều bước như biến đổi, tách, chiết, convert...
 
-Để hình dung dễ hiểu hơn về API thì mọi người hình dung **API** nó giống như một cái hàm và có tham số cụ thể(Nếu không có giới hạn tham số thì API có thể yêu cầu mọi từ server).
+Bạn là một người làm data, tuy nhiên bạn chưa tưởng tượng được hết các bước để xử lý dữ liệu. Những hình dung việc xử lý dữ liệu ban đầu của mọi người thường là những thao tác cơ bản như loại bỏ giá trị trùng lặp hay xóa các ô null.
 
-Tùy theo loại API mà có giới hạn requests truy cập riêng
+Tuy nhiên, trong thực tế hiện đại, xử lý dữ liệu là một quá trình toàn diện và có hệ thống. Nó không chỉ dừng lại ở việc "dọn dẹp" mà còn bao gồm nhiều công đoạn quan trọng sấy, băm chặt như sau:
 
-**Server** thì như một đôi tai liên tục lắng nghe tin hiệu từ API và trả về những thứ theo yêu cầu thực hiện của API
+- Biến đổi dữ liệu: chuẩn hóa định dạng, đổi kiểu dữ liệu, chuẩn hóa đơn vị đo lường.
 
+- Tách & gộp dữ liệu: trích xuất các trường con từ dữ liệu thô hoặc ghép nhiều nguồn dữ liệu lại với nhau.
 
+- Chuyển đổi & mã hóa: chuyển đổi dữ liệu giữa các hệ thống, mã hóa giá trị dạng phân loại thành số để phục vụ phân tích.
 
+- Làm giàu dữ liệu: bổ sung thêm thông tin từ các nguồn ngoài để tăng giá trị phân tích.
 
-![Subnets](/images/1-Introduce/api.svg?featherlight=false&width=50pc)
+- Xử lý nâng cao: phát hiện ngoại lệ, chuẩn hóa dữ liệu theo chuẩn thống kê, tạo đặc trưng mới phục vụ machine learning.
 
-#### Sự khác nhau giữa API và Webhook
-
-Webhook chủ yếu dựa trên phương thức post (nếu có thay đổi theo điều kiện cho trước)
+Nói cách khác, xử lý dữ liệu chính là cầu nối quan trọng giữa dữ liệu thô và thông tin có thể hành động được, đảm bảo dữ liệu sạch, nhất quán và sẵn sàng cho phân tích, báo cáo hoặc huấn luyện mô hình.
