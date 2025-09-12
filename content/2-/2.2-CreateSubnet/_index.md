@@ -3,7 +3,7 @@ title : "Tạo Lambda Function"
 date :  "2025-09-11" 
 weight : 2 
 chapter : false
-pre : " <b> 3.2 </b> "
+pre : " <b> 2.2 </b> "
 ---
 
 #### Tạo Lambda Function

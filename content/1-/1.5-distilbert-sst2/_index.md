@@ -16,6 +16,10 @@ distilBERT-SST2 là mô hình DistilBERT được tinh chỉnh trên tập dữ 
 - SST-2 (Stanford Sentiment Treebank v2) gán nhãn cảm xúc nhị phân cho câu; đầu ra mô hình là xác suất/nhãn Positive hoặc Negative.
 - Kết quả thường lấy theo Softmax trên hai lớp; có thể tùy ngưỡng cho các mục tiêu kinh doanh khác nhau.
 
+##### Phân loại văn bản thành tích cực tiêu cực
+
+Sở dĩ dùng model trên do dữ liệu lấy về có cột content chứa đánh giá của người dùng
+
 ##### Ứng dụng thực tế
 - Phân tích cảm xúc đánh giá ứng dụng, phản hồi khách hàng, bài đăng mạng xã hội.
 - Cảnh báo sớm và ưu tiên xử lý phản hồi tiêu cực trong quy trình hỗ trợ.
