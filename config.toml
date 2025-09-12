@@ -8,18 +8,18 @@ home = [ "HTML", "RSS", "JSON"]
 
 [params]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "workshop"
+  themeVariant = "aws"
   # Git hub repo link
   editURL = ""
-  description = ""
-  author = "huyv80313@gmail.com"
+  description = "Workshop hướng dẫn xây dựng pipeline phân tích dữ liệu đánh giá ứng dụng Google Play sử dụng AWS services"
+  author = "AWS Study Group"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
   
 [Languages]
 [Languages.en]
-title = "Start with Amazon VPC and AWS VPN Site-to-Site."
+title = "AWS Data Pipeline: Google Play Reviews Analysis"
 weight = 1
 languageName = "English"
 
@@ -36,7 +36,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
 
 [Languages.vi]
-title = "Nhận thông báo chi tiêu cho hoạt động mua sắp tại Shopee"
+title = "AWS Data Pipeline: Phân tích đánh giá ứng dụng Google Play"
 weight = 2
 languageName = "Tiếng Việt"
 
