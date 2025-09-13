@@ -1,17 +1,15 @@
 ---
-title : "AWS Data Pipeline: Phân tích đánh giá ứng dụng Google Play"
-date :  "2025-01-15" 
+title : "Tăng cường dữ liệu cho báo cáo đánh giá app trên market"
+date :  "2025-09-11" 
 weight : 1 
 chapter : false
 ---
 
-# 🚀 AWS Data Pipeline: Phân tích đánh giá ứng dụng Google Play
+# Tăng cường dữ liệu cho báo cáo đánh giá app trên Google Play
 
-![AWS Data Pipeline Logo](/images/logo.svg)
+![](https://citgroup.vn/wp-content/uploads/2024/02/app-giao-do-an-1.png)
 
-## 🎯 Mục tiêu Workshop
-
-Xây dựng pipeline tự động phân tích sentiment từ đánh giá ứng dụng Google Play sử dụng AWS services
+<!-- ![Create VPC](/images/teleBot.webp?featherlight=false&width=75pc&height=30pc) -->
 
 
 #### Tổng quan
@@ -61,50 +59,18 @@ Quy trình triển khai có thể tận dụng nhiều dịch vụ AWS để đ�
 
 → Tuy nhiên để đơn giản và demo một cách thuận tiện nhất có thể bài lab chỉ thực hiện một số những tính năng đơn giản và có thể thực hiện được ngay. Độc giả có thể dễ dàng phát triển thêm các tinh năng khác dựa theo từng nhu cầu và đặc điểm của bản thân. 
 
-#### 🛠️ Yêu cầu tiên quyết
+#### Ngôn ngữ chính để phục vụ workshop này là python 3.12
 
-**📚 Kiến thức cần có:**
-- AWS cơ bản (S3, Lambda, SageMaker)
-- Python 3.12+
-- JSON và API
-
-**⏱️ Thời gian:**
-- Tổng thời gian: 3-4 giờ
-- Mỗi phần: 30-45 phút
-- Có thể làm theo nhóm
-
-**💰 Chi phí ước tính:**
-- Free tier: $0-5
-- Production: $10-20/tháng
-- Có hướng dẫn tối ưu
-
-#### 🎨 Kiến trúc tổng quan
-
-![AWS Data Pipeline Architecture](/images/schema.png)
+<!-- ![Create VPC](/images/schema.png?featherlight=false&width=90pc) -->
+![Create VPC](/images/schema.png)
 
 
-#### 📋 Nội dung Workshop
+#### Nội dung
 
-1. **[📖 Giới thiệu](1-/)** - Tổng quan về pipeline và các AWS services
-2. **[⚙️ Chuẩn bị](2-/)** - Setup AWS account và môi trường  
-3. **[🕷️ Crawler](3-/)** - Xây dựng crawler lấy dữ liệu Google Play
-4. **[🤖 ML Processing](4-/)** - Tạo Batch Transform job với SageMaker
-5. **[📊 Data Warehouse](5-/)** - Tạo và đẩy dữ liệu lên Athena
-6. **[📈 Dashboard](6/)** - Dựng dashboard trên QuickSight
-7. **[🧹 Cleanup](7-/)** - Dọn dẹp tài nguyên AWS
-
-#### 🎯 Kết quả mong đợi
-
-Sau khi hoàn thành workshop, bạn sẽ có:
-
-- ✅ **Pipeline tự động** thu thập và xử lý dữ liệu review
-- ✅ **Dashboard trực quan** hiển thị sentiment analysis  
-- ✅ **Kiến thức thực tế** về AWS services
-- ✅ **Code template** có thể tái sử dụng cho dự án khác
-
-#### 💡 Lưu ý quan trọng
-
-- Tuân thủ Terms of Service của Google Play Store
-- Sử dụng rate limiting để tránh bị block
-- Monitor chi phí AWS thường xuyên
-- Backup dữ liệu quan trọng
+1. [Giới thiệu](1-/)
+2. [Chuẩn bị](2-/)
+3. [Dựng crawler lấy dữ liệu](3-/) 
+5. [Tạo Batch Transform job](4-/)
+6. [Tạo và đẩy dữ liệu lên Athena](5-/)
+7. [Dựng dashboard trên QuickSight](6/)
+8. [Dọn dẹp tài nguyên](7-/)    

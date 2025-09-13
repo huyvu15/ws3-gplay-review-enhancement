@@ -1,14 +1,14 @@
 ---
-title : "Sử dụng ChatBot"
+title : "Tạo báo cáo trên QuickSight và truy vấn Athena"
 date :  "2025-09-11" 
 weight : 6 
 chapter : false
 pre : " <b> 6. </b> "
 ---
 
-### Sử dụng ChatBot 
+### Tạo báo cáo trên QuickSight và truy vấn Athena
 
-Sau khi Các công đoạn cài đặt và cấu hình đã hoàn tất. Chúng ta đến bước khai thác và sử dụng chatbot.
+Tạo báo cáo trên QuickSight và truy vấn Athena
 
 
 

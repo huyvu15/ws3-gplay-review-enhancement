@@ -17,7 +17,7 @@ pre : " <b> 2.1 </b> "
 
 ![Create VPC](/images/3-Prerequiste/3.1-Create_S3_bucket/1.png?featherlight=false&width=90pc)
 
-2. Điền tên bucket là ```bottele```
+2. Điền tên bucket là ```glutisify-datalake```
 
 ![Create VPC](/images/3-Prerequiste/3.1-Create_S3_bucket/2.png?featherlight=false&width=90pc)
 
@@ -29,6 +29,9 @@ Tên Bucket phải là duy nhất và không được trùng với tên các buc
 
 ![Create VPC](/images/3-Prerequiste/3.1-Create_S3_bucket/3.png?featherlight=false&width=90pc)
 
+{{% notice warning %}}
+Tên Bucket mọi người có thể tùy ý nha!
+{{% /notice %}}
 
 #### Tạo trên CLI
 Mọi người có thể thực hiện nhanh chóng hơn bằng lệnh cli sau:

@@ -1,12 +1,12 @@
 ---
-title : "Tạo bảng trong dynamodb"
+title : "Crawler và xử lý dữ liệu trên Glue"
 date :  "2025-09-11" 
 weight : 5 
 chapter : false
 pre : " <b> 5. </b> "
 ---
 
-#### Tạo bảng trong DynamoDB
+#### Crawler và xử lý dữ liệu trên Glue
 
 
 

@@ -1,46 +1,140 @@
 ---
-title : "Connect với webhook bằng postman"
+title : "Tạo lambda lấy data app_reviews"
 date :  "2025-09-11" 
 weight : 2
 chapter : false
 pre : " <b> 4.2 </b> "
 ---
 
-#### Connect với webhook
-
-1. Truy cập giao diện Postman: ```https://www.postman.com```
- - Chọn **Workspace**
-
-
-![Create VPC](/images/4-API/4.2-Postman/1.png?featherlight=false&width=90pc)
-
-2. Tại workspace tạo một tab làm việc mới
-
-![Create VPC](/images/4-API/4.2-Postman/2.png?featherlight=false&width=90pc)
-
-3. Quay lại giao diện **API Gateway**
- - Copy **Invoke URL**: ```https://vdmj0zewl4.execute-api.us-east-1.amazonaws.com```
-
-![Create VPC](/images/4-API/4.2-Postman/3-1.png?featherlight=false&width=90pc)
 
 
 
-4. Chọn **Body** 
- - Điền địa chỉ ```https://api.telegram.org/bot<token-botTele>/setWebhook```. **\<token-botTele\>** là link token tạo bot Telegram ban đầu
- - Tại **Key** điền: ```url```
- - Tại **Value** điền: ```https://vdmj0zewl4.execute-api.us-east-1.amazonaws.com/<Lambda-function-name>``` vừa lấy ở bước 3 (Invoke URL)
+#### Tạo lambda thu thập dữ liệu app_review
 
-![Create VPC](/images/4-API/4.2-Postman/3.png?featherlight=false&width=90pc)
+1. Truy cập service Lambda Function
 
-5. Nhấn **Send** 
- - Response trả về như trong ảnh là ok
+- Chọn **Funtion**
+- Chọn **Create funtion**
+- Đặt tên function là **crawl-review-maker-chplay**
+- Runtime chọn **Python3.12**
+- Role: Chọn role đủ quyền :>
 
-![Create VPC](/images/4-API/4.2-Postman/4.png?featherlight=false&width=90pc)
+2. Add layer cho lambda
+- Kéo xuống cuối chọn: **Add a layer** 
 
-```Python
-{
-    "ok": true,
-    "result": true,
-    "description": "Webhook was set"
-}
+![Create VPC](/images/2/9.png?featherlight=false&width=90pc)
+
+- Chọn **Custum layers**
+- Chọn **google_play_scrape**
+
+![Create VPC](/images/2/10.png?featherlight=false&width=90pc)
+
+
+
+3. Thêm code vào lambda:
+
+
+```python
+import json
+import boto3
+import datetime
+from google_play_scraper import app, reviews, Sort
+
+s3 = boto3.client("s3")
+BUCKET = "glutisify-datalake"
+
+def save_to_s3(bucket, key, data):
+    s3.put_object(
+        Bucket=bucket,
+        Key=key,
+        Body=data.encode("utf-8"),
+        ContentType="application/json"
+    )
+    print(f"Saved to s3://{bucket}/{key}")
+
+def lambda_handler(event, context):
+    package_list = [
+        "com.edupia.app.english.kid",
+        "com.facebook.katana",
+        "com.zhiliaoapp.musically"
+    ]
+
+    today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+    crawled_at = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+
+    days = 90
+    start_date = datetime.datetime.utcnow() - datetime.timedelta(days=days)
+
+    results = []
+
+    for package_name in package_list:
+        app_detail = app(package_name, lang="en", country="us")
+
+        if "comments" in app_detail:
+            del app_detail["comments"]
+
+        app_detail_record = {
+            **app_detail,
+            "package_name": package_name,
+            "url": f"https://play.google.com/store/apps/details?id={package_name}",
+            "crawled_at": crawled_at
+        }
+
+        detail_key = f"chplay/app_details/{package_name}/{today}.json"
+        save_to_s3(BUCKET, detail_key, json.dumps(app_detail_record, ensure_ascii=False))
+
+        # ---- Crawl Reviews (crawl nhiều để đảm bảo có đủ review 7 ngày gần nhất) ----
+        app_reviews, _ = reviews(
+            package_name,
+            lang="en",
+            country="us",
+            # count=1000,       # crawl nhiều, rồi filter sau
+            sort=Sort.NEWEST
+        )
+
+        review_lines = []
+        for r in app_reviews:
+            review_date = r.get("at")
+            if review_date and review_date >= start_date:
+                review_obj = {
+                    "package_name": package_name,
+                    "app_title": app_detail.get("title"),
+                    "url": f"https://play.google.com/store/apps/details?id={package_name}",
+                    "reviewId": r.get("reviewId"),
+                    "userName": r.get("userName"),
+                    "userImage": r.get("userImage"),
+                    "content": r.get("content"),
+                    "score": r.get("score"),
+                    "thumbsUpCount": r.get("thumbsUpCount"),
+                    "reviewCreatedVersion": r.get("reviewCreatedVersion"),
+                    "at": review_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    "replyContent": r.get("replyContent"),
+                    "repliedAt": r.get("repliedAt").strftime("%Y-%m-%d %H:%M:%S") if r.get("repliedAt") else None,
+                    "appVersion": r.get("appVersion"),
+                    "crawled_at": crawled_at
+                }
+                review_lines.append(json.dumps(review_obj, ensure_ascii=False))
+
+        reviews_key = f"chplay/app_reviews/{package_name}/{today}.jsonl"
+        save_to_s3(BUCKET, reviews_key, "\n".join(review_lines))
+
+        results.append({
+            "package_name": package_name,
+            "detail_file": detail_key,
+            "reviews_file": reviews_key,
+            "total_reviews": len(review_lines)
+        })
+
+    return {
+        "status": "ok",
+        "results": results
+    }
 ```
+
+=> Mỗi khi run code nó sẽ lấy dữ liệu app_details thay đổi theo từng tuần, lấy theo tuần do thông thường app sẽ ít review nếu đã release lâu ngày.
+
+
+
+
+
+
