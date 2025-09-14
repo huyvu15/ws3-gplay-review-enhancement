@@ -18,14 +18,9 @@ Vào S3 chọn bucket và chọn **workshoph** và chọn Empty. sau đó chọn
 ### Xóa Lambda function
 Vào Lambda function chọn function chọn **BotTele** và chọn **Actions** chọn **Delete** để xóa.
 
+### Xóa model trên Sagemaker AI
+Truy cập vào giao diện Sagemaker AI, chọn model và xóa model đã tạo để tránh phát sinh chi phí
 
-### Xóa API Gateway
-
-Vào API Gateway tìm API vừa tạo chọn **Delete**
-
-### Xóa bảng DynamoDB
-
-Vào DynamoDB chọn **Table** và chọn bảng **Spend-me** chọn **Delete** làm theo các hiển thị để xóa.
 
 
 

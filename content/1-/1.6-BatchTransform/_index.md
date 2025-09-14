@@ -27,3 +27,14 @@ SageMaker Batch Transform là dịch vụ suy luận hàng loạt (offline) dùn
 - Tạo đặc trưng nâng cao (feature enrichment) cho pipeline phân tích báo cáo.
 - Phân loại, phát hiện chủ đề/cảm xúc, lọc nội dung quy mô lớn.
 - Chạy lại suy luận theo đợt khi có phiên bản mô hình mới.
+
+##### Các lưu ý 
+
+Use batch transform when you need to do the following:
+
+- Preprocess datasets to remove noise or bias that interferes with training or inference from your dataset.
+- Get inferences from large datasets.
+- Run inference when you don't need a persistent endpoint.
+- Associate input records with inferences to help with the interpretation of results.
+
+. Note that Batch Transform doesn't support CSV-formatted input that contains embedded newline characters. You can control the size of the mini-batches by using the [`BatchStrategy`](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-BatchStrategy) and [`MaxPayloadInMB`](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-MaxPayloadInMB) parameters. `MaxPayloadInMB` must not be greater than 100 MB. If you specify the optional [`MaxConcurrentTransforms`](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html#sagemaker-CreateTransformJob-request-MaxConcurrentTransforms) parameter, then the value of `(MaxConcurrentTransforms * MaxPayloadInMB)` must also not exceed 100 MB.
