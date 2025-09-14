@@ -1,0 +1,183 @@
+[
+{
+	"uri": "//localhost:1313/vi/1-/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Tăng cường dữ liệu cho báo cáo đánh giá app trên Google Play Tổng quan Dạo gần đây với sự nổi lên của các chatbot thông minh như OpenAI, Claude, Bing,\u0026hellip; với những tính năng vô cùng mạnh mẽ. Vì vậy mình cũng muốn tạo ra một con chatbot đơn giản của riêng bản thân. Trong workshop này, bạn sẽ học cách thiết kế và lập trình một chatbot trên Telegram, giúp bạn tiện lợi theo dõi và quản lý chi tiêu cá nhân mà không cần đăng nhập.\nTelegram là một ứng dụng nhắn tin phổ biến, mạnh mẽ và là lựa chọn lý tưởng để phát triển chatbot quản lý chi tiêu.\nCác Service sử dụng: 1. AWS Lambda Function: là dịch vụ điện toán phi máy chủ (serverless) do Amazon cung cấp, cho phép bạn chạy các đoạn mã mà không cần quản lý máy chủ. Với Lambda, bạn chỉ cần tải lên mã của mình và AWS sẽ lo phần còn lại, bao gồm việc cung cấp tài nguyên máy tính và tự động scale mã của bạn dựa trên nhu cầu.\n2. Amazon S3: kho lưu trữ dung lượng lớn, chi phí thấp và an toàn, phù hợp với nhiều nhu cầu lưu trữ dữ liệu.\n3. Amazon DynamoDB: Dịch vụ cơ sở dữ liệu NoSQL hiệu suất cao, tự động điều chỉnh quy mô theo nhu cầu.\n4. API Gateway: Dịch vụ quản lý API giúp tạo, xuất bản, duy trì và bảo mật các API ở bất kỳ quy mô nào.\nWorkshop sẽ tập trung vào các tính năng đơn giản, dễ thực hiện. Người dùng có thể phát triển thêm các tính năng khác dựa trên nhu cầu cá nhân.\nNgôn ngữ chính để phục vụ workshop này là python 3.10\nÝ tưởng: Viết một API Gateway để kết nối với telegram và kích hoạt thông qua webhook. API đó được gắn với một lambda function có nhiệm vụ đọc và ghi dữ liệu, truy vấn kết quả truy vấn đến dynamodb. Tùy vào mục đích sử dụng ta có thể sáng tạo công dụng của chatbot theo ý muốn:\nMột số những thống kê có thể kể đến:\nTổng số tiền chi tiêu trong tháng.\nTổng tiền ăn.\nTổng số tiền đổ xăng.\nCác chi tiêu gần nhất.\nBạn có thể làm gì với dữ liệu từ ChatBot Ngoài việc để theo dõi thu chi cá nhân hiện tại. Bạn có thể sử dụng dữ liệu này cho các mô hình machine learning đơn giản để dự báo chi tiêu cũng như đưa ra cảnh báo nếu như thu chi bị biến động quá nhiều. Hoặc đưa gia các gợi ý thích hợp và chi tiêu thích hợp cho các tháng tiếp theo.\nNội dung Giới thiệu Tạo chatbot trên Telegram Các bước chuẩn bị Tạo API Gateway Tạo bảng trong DynamoDB Sử dụng Chatbot Dọn dẹp tài nguyên Bây giờ chúng ta sẽ cùng nhau đi qua các khái niệm cơ bản nhất của Lambda Function.\n"
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.1-googleplay/",
+	"title": "Google Play",
+	"tags": [],
+	"description": "",
+	"content": "Google Play là gì Khi nói về hệ điều hành Android, không thể không nhắc đến Google Play (thường được biết đến với tên gọi CH Play tại Việt Nam). Đây không chỉ đơn thuần là một \u0026ldquo;cửa hàng ứng dụng\u0026rdquo;, mà là một hệ sinh thái nội dung số toàn diện, đóng vai trò là cổng chính kết nối hàng tỷ người dùng với thế giới ứng dụng, trò chơi và giải trí kỹ thuật số. Được phát triển và duy trì bởi Google, Google Play là nền tảng phân phối chính thức và đáng tin cậy nhất dành cho các thiết bị chạy hệ điều hành Android.\nTừ Android Market đến một Trung tâm Nội dung Toàn diện Tiền thân của Google Play là Android Market, ra mắt vào năm 2008. Ban đầu, đây chỉ là một nơi khiêm tốn để người dùng tải về các ứng dụng cơ bản. Tuy nhiên, nhận thấy tiềm năng to lớn, vào tháng 3 năm 2012, Google đã thực hiện một cuộc tái cấu trúc mang tính bước ngoặt. Họ hợp nhất Android Market, Google Music, và Google eBookstore thành một nền tảng duy nhất dưới cái tên Google Play.\nSự thay đổi này không chỉ là về tên gọi. Nó đánh dấu một sự chuyển mình chiến lược, biến Google Play từ một kho ứng dụng đơn thuần thành một trung tâm giải trí đa phương tiện, nơi người dùng có thể:\nTải ứng dụng và trò chơi: Với hàng triệu lựa chọn, từ các công cụ làm việc, ứng dụng học tập, mạng xã hội cho đến các tựa game bom tấn.\nThưởng thức phim và chương trình TV: Mua hoặc thuê các bộ phim mới nhất.\nĐọc sách và tạp chí: Khám phá một thư viện sách điện tử khổng lồ.\nNghe nhạc và podcast: (Tùy thuộc vào khu vực).\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-/4.1/",
+	"title": "Tạo lambda lấy data app_details",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/4-/4.2/",
+	"title": "Tạo lambda lấy data app_details",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/4-/4.3/",
+	"title": "Tạo lambda lấy data app_details",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/2-/2.1-creates3bucket/",
+	"title": "Tạo S3 Bucket",
+	"tags": [],
+	"description": "",
+	"content": "Tạo S3 Bucket Truy cập giao diện AWS Management Console\nTìm S3 Chọn Bucket Chọn Create Bucket Điền tên bucket là bottele Tên Bucket phải là duy nhất và không được trùng với tên các bucket đã có.\n3. Chọn Create Bucket\n"
+},
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Tăng cường dữ liệu cho báo cáo đánh giá app trên market",
+	"tags": [],
+	"description": "",
+	"content": "Tăng cường dữ liệu cho báo cáo đánh giá app trên Google Play Tổng quan Trong bối cảnh ứng dụng di động ngày càng cạnh tranh, việc theo dõi và phân tích phản hồi của người dùng trên Google Play là yếu tố quan trọng giúp đội ngũ phát triển cải thiện chất lượng sản phẩm. Tuy nhiên, dữ liệu đánh giá thô (reviews) thường rời rạc và khó khai thác ngay cho mục đích báo cáo.\nĐể khắc phục điều này, ta có thể xây dựng một pipeline tự động hóa:\nThu thập dữ liệu đánh giá hằng ngày.\nXử lý và làm giàu dữ liệu (ví dụ phân tích cảm xúc người dùng).\nLưu trữ và trực quan hóa trên dashboard.\nNhờ cách tiếp cận này, báo cáo không chỉ dừng ở số lượng review hay rating, mà còn cung cấp cái nhìn sâu hơn về mức độ hài lòng của người dùng, xu hướng cảm xúc theo thời gian, và các điểm cần cải thiện.\nCác Service sử dụng: Quy trình triển khai có thể tận dụng nhiều dịch vụ AWS để đảm bảo tự động, mở rộng linh hoạt và tối ưu chi phí:\n1. AWS Lambda Function:\nChạy function crawler để lấy dữ liệu review từ Google Play. Tự động scale theo số lượng request, không cần quản lý server. 2. Amazon S3:\nLưu trữ dữ liệu thô (raw data) sau khi cào từ Google Play. Dùng làm input/output trong các bước xử lý tiếp theo. 3. Amazon SageMaker (Batch Transform):\nXử lý dữ liệu review bằng mô hình sentiment analysis. Chạy inference theo batch, tiết kiệm chi phí cho workload định kỳ. 4. Amazon EventBridge:\nĐặt lịch trigger pipeline hằng ngày. Đảm bảo quy trình ETL diễn ra tự động mà không cần can thiệp thủ công. 5. Amazon Athena / Amazon Redshift (tùy nhu cầu):\nTruy vấn và tổng hợp dữ liệu đã xử lý. Làm nguồn dữ liệu cho báo cáo/dashboard. 6. Amazon QuickSight:\nTrực quan hóa dữ liệu. Xây dựng dashboard theo dõi xu hướng sentiment, số lượng review, rating trung bình… → Tuy nhiên để đơn giản và demo một cách thuận tiện nhất có thể bài lab chỉ thực hiện một số những tính năng đơn giản và có thể thực hiện được ngay. Độc giả có thể dễ dàng phát triển thêm các tinh năng khác dựa theo từng nhu cầu và đặc điểm của bản thân.\nNgôn ngữ chính để phục vụ workshop này là python 3.12 Nội dung Giới thiệu Chuẩn bị Dựng crawler lấy dữ liệu Tạo Batch Transform job Tạo và đẩy dữ liệu lên Athena Dựng dashboard trên QuickSight Dọn dẹp tài nguyên "
+},
+{
+	"uri": "//localhost:1313/vi/6/6.1/",
+	"title": "Thêm code vào lambda function",
+	"tags": [],
+	"description": "",
+	"content": "Thêm code vào lambda function Truy cập lại giao diện Lambda function vừa tạo ở bước 3.2 Chọn function Chọn function BotTele Tại giao diện code Lambda function Copy đoạn code sau vào ô code: import json import requests import boto3 from datetime import datetime client = boto3.resource(\u0026#39;dynamodb\u0026#39;) def get_current_month_statistics(): try: table = client.Table(\u0026#39;Spend-me\u0026#39;) response = table.scan() total_spend = 0 total_food_spend = 0 total_fuel_spend = 0 current_date = datetime.now() current_month = current_date.month current_year = current_date.year for item in response[\u0026#39;Items\u0026#39;]: if \u0026#39;spend\u0026#39; in item and item[\u0026#39;spend\u0026#39;].isdigit(): spend_amount = int(item[\u0026#39;spend\u0026#39;]) else: continue if \u0026#39;date\u0026#39; in item and \u0026#39;-\u0026#39; in item[\u0026#39;date\u0026#39;]: date = item[\u0026#39;date\u0026#39;] date_parts = date.split(\u0026#39;-\u0026#39;) if len(date_parts) == 3: item_month = int(date_parts[1]) item_year = int(date_parts[2]) if item_month != current_month or item_year != current_year: continue total_spend += spend_amount if \u0026#39;spend_name\u0026#39; in item: spend_name = item[\u0026#39;spend_name\u0026#39;].lower() if \u0026#39;ăn\u0026#39; in spend_name: total_food_spend += spend_amount elif \u0026#39;đổ xăng\u0026#39; in spend_name: total_fuel_spend += spend_amount return total_spend, total_food_spend, total_fuel_spend except Exception as e: print(f\u0026#34;Error in get_current_month_statistics: {e}\u0026#34;) raise def lambda_handler(event, context): try: body = json.loads(event[\u0026#39;body\u0026#39;]) chat_id = body[\u0026#39;message\u0026#39;][\u0026#39;chat\u0026#39;][\u0026#39;id\u0026#39;] message_text = body[\u0026#39;message\u0026#39;][\u0026#39;text\u0026#39;] url = \u0026#34;https://api.telegram.org/bot\u0026lt;bot-token\u0026gt;/sendMessage\u0026#34; if message_text.startswith(\u0026#39;/sum\u0026#39;): total_spend, total_food_spend, total_fuel_spend = get_current_month_statistics() response_text = (f\u0026#34;Đây là thống kê chi tiết chi tiêu tháng này của bạn:\\n\u0026#34; f\u0026#34;Tổng chi tiêu: {total_spend}\\n\u0026#34; f\u0026#34;Tổng tiền ăn: {total_food_spend}\\n\u0026#34; f\u0026#34;Tổng tiền đổ xăng: {total_fuel_spend}\u0026#34;) elif message_text.startswith(\u0026#39;/chi\u0026#39;): parts = message_text.split(\u0026#39;|\u0026#39;) if len(parts) == 3: spend = int(parts[0].strip().split()[1]) # Extract the amount from the command spend_name = parts[1].strip() # Extract the spend name date = parts[2].strip() # Extract the date formatted_date = datetime.strptime(date, \u0026#39;%d-%m-%Y\u0026#39;).strftime(\u0026#39;%Y-%m-%d\u0026#39;) # Format the date properly table = client.Table(\u0026#39;\u0026lt;table-name\u0026gt;\u0026#39;) response = table.put_item( Item={ \u0026#39;id\u0026#39;: str(datetime.now().timestamp()), \u0026#39;spend\u0026#39;: str(spend), \u0026#39;spend_name\u0026#39;: spend_name, \u0026#39;date\u0026#39;: formatted_date } ) response_text = \u0026#34;Dữ liệu đã ghi vào cơ sở dữ liệu thành công.\u0026#34; else: response_text = \u0026#34;Sai định dạng. Định dạng đúng: /chi 10000 | Mua áo | 12-7-2023\u0026#34; elif message_text.startswith(\u0026#39;/show\u0026#39;): table = client.Table(\u0026#39;Spend-me\u0026#39;) response = table.scan(Limit=5) items = response[\u0026#39;Items\u0026#39;] response_text = \u0026#34;Top 5 ghi chép mới nhất:\\n\u0026#34; for item in items: response_text += f\u0026#34;- ID: {item.get(\u0026#39;id\u0026#39;, \u0026#39;N/A\u0026#39;)}, Spend: {item.get(\u0026#39;spend\u0026#39;, \u0026#39;0\u0026#39;)}, Name: {item.get(\u0026#39;spend_name\u0026#39;, \u0026#39;N/A\u0026#39;)}, Date: {item.get(\u0026#39;date\u0026#39;, \u0026#39;N/A\u0026#39;)}\\n\u0026#34; else: response_text = \u0026#34;Lệnh không hợp lệ. Vui lòng sử dụng /chi để nhập chi tiêu hoặc /sum để xem thống kê.\u0026#34; payload = {\u0026#39;chat_id\u0026#39;: chat_id, \u0026#39;text\u0026#39;: response_text} requests.post(url, json=payload) return {\u0026#34;statusCode\u0026#34;: 200, \u0026#34;body\u0026#34;: json.dumps({\u0026#34;message\u0026#34;: \u0026#34;Success\u0026#34;})} except Exception as e: print(f\u0026#34;Error in lambda_handler: {e}\u0026#34;) return {\u0026#34;statusCode\u0026#34;: 500, \u0026#34;body\u0026#34;: json.dumps({\u0026#34;message\u0026#34;: \u0026#34;Error\u0026#34;})} Những cái cần sửa:\n\u0026lt;bot-token\u0026gt;: token lấy của chatbot tại bước 2\n\u0026lt;table-name\u0026gt;: tên bảng Dynamodb đã tạo\nCác bạn có thể để id tự tăng hoặc để theo ngày tháng giống mình :))\nNhấn Deploy để lưu code: Code được lưu thành công "
+},
+{
+	"uri": "//localhost:1313/vi/2-/2.2-createlayer/",
+	"title": "Add Layer google_play_scraper",
+	"tags": [],
+	"description": "",
+	"content": "Add Layer google_play_scraper Có rất nhiều layer có sẵn được các người dùng khác đóng gói và chia sẻ trên các repo github. Tuy nhiên đó chỉ là các layer rất là phổ biến còn đa số các thư viện còn lại sẽ không được như vậy.\nTại đây mình sẽ hướng dẫn bạn đóng gói chung cho các layer\nMột vài cái cần phải lưu ý:\nKhông phải package nào cũng đóng gói được thành layer, AWS chỉ cho phép kích thước zip tối đa là 50MB, và 250MB trên s3 Việc tạo package bạn có thể tạo ở local và đấy ngược lên s3 Việc hiện tại cần làm:\nChuẩn bị một server linux (có thể là máy bạn) hoặc dùng trực tiếp cloud shell Đã cài aws cli Thực hiện lần lượt các câu lệnh sau: Tạo cấu trúc thư mục mkdir google_play_scraper_layer cd google_play_scraper_layer mkdir -p python Cài thư viện Python pip install google_play_scraper -t python/ Đóng gói zip zip -r9 google_play_scraper_layer.zip python Upload file lên s3 aws s3 cp dist/google_play_scraper-0.1.0-py3-none-any.whl s3://glutisify/package/ Tạo layer trên giao diện Trong giao diện AWS Management Console\nChọn Lambda Chọn Layer Chọn Create layer Tiếp tục chọn Tại name điền google_play_scraper Tại description điền google_play_scraper package Chọn upload từ s3 Tại Amazon S3 link URL điền s3://glutisify-datalake/package/google_play_scraper_layer.zip Tại architectures chọn arm64, x86_64 Chọn Python 3.12 Chọn Create =\u0026gt; Đây là cách 1 layer được ra đời :\u0026raquo;\nTham khảo pip install google_play_scraper\n"
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.2-crawldata/",
+	"title": "Webhook",
+	"tags": [],
+	"description": "",
+	"content": "Webhook Webhook là một cách để các ứng dụng web nhận thông tin theo thời gian thực. Khi sự kiện xảy ra tại một hệ thống, webhook sẽ gửi dữ liệu tự động tới URL khác thông qua một HTTP request. Điều này cho phép hệ thống phản ứng ngay lập tức với các thay đổi dữ liệu hoặc sự kiện mà không cần phải kiểm tra dữ liệu định kỳ.\nCách hoạt động của webhook tương tự như một mạch phản hồi: khi có tín hiệu đầu vào (sự kiện), mạch này sẽ phát tín hiệu đầu ra (HTTP request) ngay lập tức đến điểm cuối đã cấu hình sẵn. Điều này hữu ích trong các ứng dụng mà bạn cần cập nhật dữ liệu liên tục và nhanh chóng như thông báo, đồng bộ hóa dữ liệu giữa các dịch vụ, hay tự động hóa các quy trình làm việc.\nKhi một sự kiện xảy ra trong ứng dụng, webhook sẽ giúp ứng dụng khác biết về sự kiện đó và thực hiện các hành động cần thiết. Khi một sự kiện xảy ra trong ứng dụng, nó sẽ gửi một HTTP request đến một URL được chỉ định trước đó được gọi là endpoint, để thông báo cho ứng dụng kia về sự kiến đó\nVí dụ, bạn có thể cấu hình một webhook trong hệ thống quản lý dữ liệu khách hàng (CRM) để khi một khách hàng mới được thêm vào, hệ thống tự động gửi thông tin khách hàng này qua webhook đến hệ thống tiếp thị qua email để bắt đầu một chiến dịch tiếp cận.\nLưu ý: Mỗi bot Telegram chỉ có thể có một webhook endpoint được cấu hình tại một thời điểm. Nếu bạn muốn thay đổi webhook để gửi dữ liệu tới một URL API khác, bạn sẽ phải cập nhật cấu hình webhook với Telegram Bot API bằng cách gọi phương thức setWebhook với URL mới.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-/2.4-createigw/",
+	"title": "Add Layer",
+	"tags": [],
+	"description": "",
+	"content": "Add Layer Trong giao diện BotTele\nKéo xuống cuối chọn Add Layer Mở tab mới và truy cập link https://github.com/keithrozario/Klayers Trong phần README chọn List of ARNs Chọn version Python 3.10 Chọn region US East (N. Virginia) Chọn html Copy ARN 2 layer cần thiết: request pymssql Quy lại giao diện Add layer Chọn Specify an ARN Copy đường dẫn 2 layer vào ô chọn Chọn Verify Chọn Add Làm tương tự với layer còn lại. Nếu ấn Verify xuất hiện như trong ảnh dưới là ok\nSau khi thêm xong các layer sẽ có giao diện đủ 2 layer như sau: "
+},
+{
+	"uri": "//localhost:1313/vi/2-/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Các bước chuẩn bị Trong bài thực hành này, chúng ta sẽ xây dựng một mô hình theo sơ đồ bên dưới:\nNội dung Tạo S3 Bucket Tạo Lambda Function Add Layer "
+},
+{
+	"uri": "//localhost:1313/vi/3-/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Các bước chuẩn bị Trong bài thực hành này, chúng ta sẽ xây dựng một mô hình theo sơ đồ bên dưới:\nNội dung Tạo S3 Bucket Tạo Lambda Function Add Layer "
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.3-layer/",
+	"title": "Layer",
+	"tags": [],
+	"description": "",
+	"content": "Về Layer Layer ở đây là các package, bên ngoài các method gốc của ngôn ngữ lập trình thông thường. Để đơn giản hãy tưởng tượng layer tương tự như các thư viện trong python và mình chỉ việc import vào và sử dụng nó như bình thường(mặc định lambda function không có sẵn các thư viện mà phải thêm vào thông qua layers).\nMỗi Lambda function được add tối đa 5 layers.\nMột lambda function không thể thêm nhiều layer quá số bit cho trước nếu thêm quá sẽ hiện cảnh báo đỏ.\nCó 2 cách để thêm layer:\nThêm trực tiếp bằng cách zip các file trong thư viện gốc rồi đẩy lên layer (tốn thời gian để nén và có khi ko ăn với lambda hoặc cũng có thể zip thiếu). Cũng zip lại và tải trực tiếp vào lambda function. The layer bằng cách copy ARNs(của những người đã tạo trước đó) cùng với version tương ứng. Link ARNs tham khảo: https://github.com/keithrozario/Klayers\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-/2.3-createmodel/",
+	"title": "Tạo model distilbert-sst2 và đẩy lên s3",
+	"tags": [],
+	"description": "",
+	"content": "Tải model về máy Tạo file main.py: vi main.py Thêm nội dung file:\nfrom transformers import AutoModelForSequenceClassification, AutoTokenizer model_id = \u0026#34;distilbert-base-uncased-finetuned-sst-2-english\u0026#34; tokenizer = AutoTokenizer.from_pretrained(model_id) model = AutoModelForSequenceClassification.from_pretrained(model_id) tokenizer.save_pretrained(\u0026#34;./distilbert-sst2\u0026#34;) model.save_pretrained(\u0026#34;./distilbert-sst2\u0026#34;) Run code:\nuv run main.py Truy cập vào phần model Tạo 1 folder mới chưa inference mkdir code cd code vi inference.py Thêm nội dung:\nimport json import os from transformers import pipeline from langdetect import detect, LangDetectException def model_fn(model_dir): \u0026#34;\u0026#34;\u0026#34; Hàm này được SageMaker gọi để tải model. Linh hoạt với cấu trúc thư mục của model. \u0026#34;\u0026#34;\u0026#34; candidate_subdir = os.path.join(model_dir, \u0026#34;model\u0026#34;) model_path = candidate_subdir if os.path.isdir(candidate_subdir) else model_dir sentiment_pipeline = pipeline( \u0026#34;text-classification\u0026#34;, model=model_path, tokenizer=model_path, device=-1, top_k=1 ) return sentiment_pipeline def input_fn(request_body, request_content_type): \u0026#34;\u0026#34;\u0026#34; Hàm này xử lý một dòng JSON duy nhất, phù hợp với BatchStrategy=SINGLE_RECORD. \u0026#34;\u0026#34;\u0026#34; if request_content_type == \u0026#39;application/jsonlines\u0026#39;: if isinstance(request_body, bytes): request_body = request_body.decode(\u0026#39;utf-8\u0026#39;) return json.loads(request_body) else: raise ValueError(f\u0026#34;Unsupported content type: {request_content_type}\u0026#34;) def predict_fn(input_data, model): \u0026#34;\u0026#34;\u0026#34; Hàm này thực hiện dự đoán trên một record duy nhất. Quan trọng: Nó sẽ phát hiện ngôn ngữ trước khi dự đoán. \u0026#34;\u0026#34;\u0026#34; review_text = input_data.get(\u0026#39;content\u0026#39;, \u0026#39;\u0026#39;).strip() if not review_text: input_data[\u0026#39;sentiment_prediction\u0026#39;] = {\u0026#39;label\u0026#39;: \u0026#39;NO_CONTENT\u0026#39;} return input_data try: lang = detect(review_text) if lang == \u0026#39;en\u0026#39;: sentiment_result = model(review_text)[0] input_data[\u0026#39;sentiment_prediction\u0026#39;] = sentiment_result else: input_data[\u0026#39;sentiment_prediction\u0026#39;] = {\u0026#39;label\u0026#39;: \u0026#39;NON_ENGLISH\u0026#39;, \u0026#39;language_detected\u0026#39;: lang} except LangDetectException: input_data[\u0026#39;sentiment_prediction\u0026#39;] = {\u0026#39;label\u0026#39;: \u0026#39;LANG_DETECT_ERROR\u0026#39;} return input_data def output_fn(prediction, accept): \u0026#34;\u0026#34;\u0026#34; Hàm này định dạng kết quả đầu ra cho một record. \u0026#34;\u0026#34;\u0026#34; if accept == \u0026#34;application/jsonlines\u0026#34;: return json.dumps(prediction, ensure_ascii=False) + \u0026#39;\\n\u0026#39; raise ValueError(f\u0026#34;Unsupported accept type: {accept}\u0026#34;) Nén lại tành file model..tar tar -czf distilbert-sst2.tar.gz distilbert-sst2/ Đẩy lên s3 aws s3 cp distilbert-sst2-fixed.tar.gz s3://glutisify-datalake/models/distilbert-sst2-fixed/ Các file code trên chỉ hiệu quả khi bạn cài xong môi trường, ở đây mình dùng uv do uv nhanh gấp 10 lần pip\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-/",
+	"title": "Tạo API Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Tạo API Gateway Nội dung Tạo API Gateway Kết nối với webhook bằng postman "
+},
+{
+	"uri": "//localhost:1313/vi/4-/4.0/",
+	"title": "Tạo job Step Function và EventBridge",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/4-/4.4/",
+	"title": "Tạo job Step Function và EventBridge",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.4-api/",
+	"title": "Xử lý dữ liệu",
+	"tags": [],
+	"description": "",
+	"content": "Xử lý dữ liệu Tuy nhiên việc xử lý dữ liệu hiện đại không chỉ đơn thuần như vậy, ngoài ra còn rất nhiều bước như biến đổi, tách, chiết, convert\u0026hellip;\nBạn là một người làm data, tuy nhiên bạn chưa tưởng tượng được hết các bước để xử lý dữ liệu. Những hình dung việc xử lý dữ liệu ban đầu của mọi người thường là những thao tác cơ bản như loại bỏ giá trị trùng lặp hay xóa các ô null.\nTuy nhiên, trong thực tế hiện đại, xử lý dữ liệu là một quá trình toàn diện và có hệ thống. Nó không chỉ dừng lại ở việc \u0026ldquo;dọn dẹp\u0026rdquo; mà còn bao gồm nhiều công đoạn quan trọng sấy, băm chặt như sau:\nBiến đổi dữ liệu: chuẩn hóa định dạng, đổi kiểu dữ liệu, chuẩn hóa đơn vị đo lường.\nTách \u0026amp; gộp dữ liệu: trích xuất các trường con từ dữ liệu thô hoặc ghép nhiều nguồn dữ liệu lại với nhau.\nChuyển đổi \u0026amp; mã hóa: chuyển đổi dữ liệu giữa các hệ thống, mã hóa giá trị dạng phân loại thành số để phục vụ phân tích.\nLàm giàu dữ liệu: bổ sung thêm thông tin từ các nguồn ngoài để tăng giá trị phân tích.\nXử lý nâng cao: phát hiện ngoại lệ, chuẩn hóa dữ liệu theo chuẩn thống kê, tạo đặc trưng mới phục vụ machine learning.\nNói cách khác, xử lý dữ liệu chính là cầu nối quan trọng giữa dữ liệu thô và thông tin có thể hành động được, đảm bảo dữ liệu sạch, nhất quán và sẵn sàng cho phân tích, báo cáo hoặc huấn luyện mô hình.\n"
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.5-distilbert-sst2/",
+	"title": "Mô hình distilbert-sst2",
+	"tags": [],
+	"description": "",
+	"content": "Mô hình distilbert-sst2 Giới thiệu distilBERT-SST2 là mô hình DistilBERT được tinh chỉnh trên tập dữ liệu SST-2 để phân tích cảm xúc nhị phân (tích cực/tiêu cực) ở cấp câu. Mô hình nhỏ gọn, suy luận nhanh, độ chính xác tốt cho các bài toán sentiment phổ biến.\nKhái niệm DistilBERT là phiên bản rút gọn của BERT qua kỹ thuật knowledge distillation: ít tham số hơn (~40%), suy luận nhanh hơn (đến ~60%) nhưng giữ phần lớn hiệu năng của BERT. SST-2 (Stanford Sentiment Treebank v2) gán nhãn cảm xúc nhị phân cho câu; đầu ra mô hình là xác suất/nhãn Positive hoặc Negative. Kết quả thường lấy theo Softmax trên hai lớp; có thể tùy ngưỡng cho các mục tiêu kinh doanh khác nhau. Ứng dụng thực tế Phân tích cảm xúc đánh giá ứng dụng, phản hồi khách hàng, bài đăng mạng xã hội. Cảnh báo sớm và ưu tiên xử lý phản hồi tiêu cực trong quy trình hỗ trợ. Theo dõi xu hướng cảm xúc theo thời gian cho báo cáo thương hiệu/sản phẩm. Là bước tiền xử lý cho các pipeline nâng cao: phân loại chủ đề, định tuyến ticket, tóm tắt. "
+},
+{
+	"uri": "//localhost:1313/vi/5-/",
+	"title": "Tạo bảng trong dynamodb",
+	"tags": [],
+	"description": "",
+	"content": "Tạo bảng trong DynamoDB Tại giao diện console, tìm kiếm DynamoDB Tiến hành tạo bảng: Chọn Table Chọn Create Table Điền các thông tin cho bảng: Table name: Spend-me Partition key: id, kiểu dữ liệu String Sort key: spend, kiểu dữ liệu Number Ta không cần phải tạo hết các cột cần thiết mà chỉ cần tạo partition key và sort key\nClick Create Table để tiến hành tạo bảng Sau một lúc thì bảng tạo thành cộng với trạng thái Active Xem dữ liệu trong bảng: Quay lại giao diện DynamoDB chọn Explore items Chọn bảng Spend-me Trên là một số dữ liệu mình đã thêm vào từ trước\n"
+},
+{
+	"uri": "//localhost:1313/vi/1-/1.6-batchtransform/",
+	"title": "Sagemaker Batch Transform",
+	"tags": [],
+	"description": "",
+	"content": "Sagemaker Batch Transform Giới thiệu SageMaker Batch Transform là dịch vụ suy luận hàng loạt (offline) dùng để chạy mô hình ML trên tập dữ liệu có sẵn, lưu kết quả trực tiếp về S3. Phù hợp cho các kịch bản không yêu cầu độ trễ thấp và cần xử lý khối lượng dữ liệu lớn theo lô.\nKhái niệm Chạy inference theo lô thay vì theo yêu cầu thời gian thực. Đọc dữ liệu đầu vào từ S3 và ghi kết quả ra S3 dưới dạng file. Không cần triển khai Endpoint, chỉ chạy khi có job nên tối ưu chi phí cho xử lý định kỳ. Ứng dụng thực tế Gắn nhãn/suy luận cho kho dữ liệu lịch sử (ví dụ: đánh giá ứng dụng đã thu thập trên S3). Tạo đặc trưng nâng cao (feature enrichment) cho pipeline phân tích báo cáo. Phân loại, phát hiện chủ đề/cảm xúc, lọc nội dung quy mô lớn. Chạy lại suy luận theo đợt khi có phiên bản mô hình mới. "
+},
+{
+	"uri": "//localhost:1313/vi/6/",
+	"title": "Tạo báo cáo trên QuickSight và truy vấn Athena",
+	"tags": [],
+	"description": "",
+	"content": "Tạo báo cáo trên QuickSight và truy vấn Athena Tạo báo cáo trên QuickSight và truy vấn Athena\nNội dung:\nThêm code vào lambda function Chat với chatbot Check log Export to S3 "
+},
+{
+	"uri": "//localhost:1313/vi/7-/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "Dọn dẹp tài nguyên Trong bài lab này chúng ta đã sử dụng các dịch vụ S3, Lambda Function, DynamoDB, API Gateway. Các dịch vụ này đều có chi phí khá là rẻ và free cho tài khoản 12 tháng nên ko cần phải xóa tài nguyên.\nNếu vẫn muốn xóa thì đây là lần lượt các bước:\nXóa S3 Bucket Vào S3 chọn bucket và chọn workshoph và chọn Empty. sau đó chọn Delete làm theo các hiển thị tiếp theo để xóa.\nXóa Lambda function Vào Lambda function chọn function chọn BotTele và chọn Actions chọn Delete để xóa.\nXóa API Gateway Vào API Gateway tìm API vừa tạo chọn Delete\nXóa bảng DynamoDB Vào DynamoDB chọn Table và chọn bảng Spend-me chọn Delete làm theo các hiển thị để xóa.\n"
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
