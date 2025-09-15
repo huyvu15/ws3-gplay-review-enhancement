@@ -38,7 +38,7 @@ pre : " <b> 4.2 </b> "
 import json
 import boto3
 import datetime
-from google_play_scraper import app, reviews, Sort
+from google_play_scraper import app, reviews_all, Sort
 
 s3 = boto3.client("s3")
 BUCKET = "glutisify-datalake"
@@ -54,20 +54,24 @@ def save_to_s3(bucket, key, data):
 
 def lambda_handler(event, context):
     package_list = [
-        "com.edupia.app.english.kid",
-        "com.facebook.katana",
-        "com.zhiliaoapp.musically"
+        "com.lumina.wallpapers",
+        "com.b_lam.resplash",
+        "com.pashapuma.pix.wallpapers",
+        "com.sspai.cuto.android",
+        "com.wallpaperscraft.changer"
     ]
+
 
     today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
     crawled_at = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
-    days = 90
+    days = 120
     start_date = datetime.datetime.utcnow() - datetime.timedelta(days=days)
 
     results = []
 
     for package_name in package_list:
+        # ---- Crawl App Detail ----
         app_detail = app(package_name, lang="en", country="us")
 
         if "comments" in app_detail:
@@ -83,39 +87,44 @@ def lambda_handler(event, context):
         detail_key = f"chplay/app_details/{package_name}/{today}.json"
         save_to_s3(BUCKET, detail_key, json.dumps(app_detail_record, ensure_ascii=False))
 
-        # ---- Crawl Reviews (crawl nhiều để đảm bảo có đủ review 7 ngày gần nhất) ----
-        app_reviews, _ = reviews(
+        # ---- Crawl Reviews (lấy toàn bộ và dừng khi gặp review cũ hơn 7 ngày) ----
+        all_reviews = reviews_all(
             package_name,
             lang="en",
             country="us",
-            # count=1000,       # crawl nhiều, rồi filter sau
             sort=Sort.NEWEST
         )
 
         review_lines = []
-        for r in app_reviews:
+        for r in all_reviews:
             review_date = r.get("at")
-            if review_date and review_date >= start_date:
-                review_obj = {
-                    "package_name": package_name,
-                    "app_title": app_detail.get("title"),
-                    "url": f"https://play.google.com/store/apps/details?id={package_name}",
-                    "reviewId": r.get("reviewId"),
-                    "userName": r.get("userName"),
-                    "userImage": r.get("userImage"),
-                    "content": r.get("content"),
-                    "score": r.get("score"),
-                    "thumbsUpCount": r.get("thumbsUpCount"),
-                    "reviewCreatedVersion": r.get("reviewCreatedVersion"),
-                    "at": review_date.strftime("%Y-%m-%d %H:%M:%S"),
-                    "replyContent": r.get("replyContent"),
-                    "repliedAt": r.get("repliedAt").strftime("%Y-%m-%d %H:%M:%S") if r.get("repliedAt") else None,
-                    "appVersion": r.get("appVersion"),
-                    "crawled_at": crawled_at
-                }
-                review_lines.append(json.dumps(review_obj, ensure_ascii=False))
+            if not review_date:
+                continue
 
-        reviews_key = f"chplay/app_reviews/{package_name}/{today}.jsonl"
+            if review_date < start_date:
+                # Nếu gặp review cũ hơn 7 ngày thì dừng luôn
+                break
+
+            review_obj = {
+                "package_name": package_name,
+                "app_title": app_detail.get("title"),
+                "url": f"https://play.google.com/store/apps/details?id={package_name}",
+                "reviewId": r.get("reviewId"),
+                "userName": r.get("userName"),
+                "userImage": r.get("userImage"),
+                "content": r.get("content"),
+                "score": r.get("score"),
+                "thumbsUpCount": r.get("thumbsUpCount"),
+                "reviewCreatedVersion": r.get("reviewCreatedVersion"),
+                "at": review_date.strftime("%Y-%m-%d %H:%M:%S"),
+                "replyContent": r.get("replyContent"),
+                "repliedAt": r.get("repliedAt").strftime("%Y-%m-%d %H:%M:%S") if r.get("repliedAt") else None,
+                "appVersion": r.get("appVersion"),
+                "crawled_at": crawled_at
+            }
+            review_lines.append(json.dumps(review_obj, ensure_ascii=False))
+
+        reviews_key = f"chplay/app_reviews/{package_name}/{today}.json"
         save_to_s3(BUCKET, reviews_key, "\n".join(review_lines))
 
         results.append({

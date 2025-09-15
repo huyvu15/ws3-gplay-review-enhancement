@@ -47,7 +47,6 @@ Thêm nội dung:
 import json
 import os
 from transformers import pipeline
-from langdetect import detect, LangDetectException
 
 def model_fn(model_dir):
     """
@@ -84,21 +83,8 @@ def predict_fn(input_data, model):
     """
     review_text = input_data.get('content', '').strip()
     
-    if not review_text:
-        input_data['sentiment_prediction'] = {'label': 'NO_CONTENT'}
-        return input_data
-
-    try:
-        lang = detect(review_text)
-        
-        if lang == 'en':
-            sentiment_result = model(review_text)[0] 
-            input_data['sentiment_prediction'] = sentiment_result
-        else:
-            input_data['sentiment_prediction'] = {'label': 'NON_ENGLISH', 'language_detected': lang}
-
-    except LangDetectException:
-        input_data['sentiment_prediction'] = {'label': 'LANG_DETECT_ERROR'}
+    sentiment_result = model(review_text)[0] 
+    input_data['sentiment_prediction'] = sentiment_result
         
     return input_data
 
@@ -116,10 +102,58 @@ def output_fn(prediction, accept):
 ```bash
 tar -czf model.tar.gz distilbert-sst2/
 ```
+- Nên dùng code này để nén:
 
-4. Đẩy lên s3
+```python
+import os
+import shutil
+import tarfile
+import json
+import textwrap
+
+def fix_model_package():
+    temp_dir = "temp_model_fixed"
+    if os.path.exists(temp_dir):
+        shutil.rmtree(temp_dir)
+    os.makedirs(temp_dir)
+    
+    try:
+        model_dest = os.path.join(temp_dir, "model")
+        shutil.copytree("distilbert-sst2", model_dest)
+        
+        code_dest = os.path.join(temp_dir, "code")
+        os.makedirs(code_dest)
+        
+        shutil.copy("distilbert-sst2/code/inference.py", code_dest)
+        
+        requirements_content = textwrap.dedent("""
+            transformers
+            torch
+            sagemaker-inference
+        """).strip()
+
+        with open(os.path.join(code_dest, "requirements.txt"), "w") as f:
+            f.write(requirements_content)
+
+        tar_filename = "model.tar.gz"
+        with tarfile.open(tar_filename, "w:gz") as tar:
+            tar.add(temp_dir, arcname=".")
+
+        shutil.rmtree(temp_dir)
+        
+    except Exception as e:
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+        raise
+if __name__ == "__main__":
+    fix_model_package()
+```
+
+
+
+1. Đẩy lên s3
 ```bash
-aws s3 cp distilbert-sst2-fixed.tar.gz s3://glutisify-datalake/models/distilbert-sst2-fixed/
+aws s3 cp model.tar.gz s3://glutisify-datalake/models/distilbert-sst2-fixed/
 ```
 
 
