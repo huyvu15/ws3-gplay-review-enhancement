@@ -13,6 +13,8 @@ pre : " <b> 4. </b> "
 
 #### Nội dung
 
-1. [Tạo S3 Bucket](https://000003.awsstudygroup.com/vi/3-prerequiste/3.1-createvpc/)
-2. [Tạo Lambda Function](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
-3. [Add Layer](https://000003.awsstudygroup.com/vi/3-prerequiste/3.3-createigw/)
+1. [Tạo lambda lấy data app_details](https://000003.awsstudygroup.com/vi/3-prerequiste/3.1-createvpc/)
+2. [Tạo lambda lấy data app_reviews](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
+3. [Tạo lambda triggle modele xử lý dữ liệu](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
+4. [Các key cần chuẩn bị](https://000003.awsstudygroup.com/vi/3-prerequiste/3.3-createigw/)
+5. [Tạo job Step Function và EventBridge](/4-/4.4/)

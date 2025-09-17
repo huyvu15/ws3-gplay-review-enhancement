@@ -16,5 +16,5 @@ Trong bài thực hành này, chúng ta sẽ xây dựng một mô hình theo s�
 #### Nội dung
 
 1. [Tạo S3 Bucket](https://000003.awsstudygroup.com/vi/3-prerequiste/3.1-createvpc/)
-2. [Tạo Lambda Function](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
-3. [Add Layer](https://000003.awsstudygroup.com/vi/3-prerequiste/3.3-createigw/)
+2. [Add Layer google_play_scrape](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
+3. [Tạo model distibert-sst2 và đẩy lên s3](https://000003.awsstudygroup.com/vi/3-prerequiste/3.3-createigw/)
