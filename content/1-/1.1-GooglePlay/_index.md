@@ -12,7 +12,7 @@ pre : " <b> 1.1 </b> "
 
 Khi nói về hệ điều hành Android, không thể không nhắc đến Google Play. Đây không chỉ đơn thuần là một "kho ứng dụng", mà là một hệ sinh thái nội dung số toàn diện, đóng vai trò là cổng chính kết nối hàng tỷ người dùng với thế giới ứng dụng, trò chơi và giải trí kỹ thuật số. Được phát triển và duy trì bởi Google, Google Play là nền tảng phân phối chính thức và đáng tin cậy nhất dành cho các thiết bị chạy hệ điều hành Android.
 
-##### Từ Android Market đến một Trung tâm Nội dung Toàn diện
+##### Từ Android Market đến một trung tâm nội dung toàn diện
 Tiền thân của Google Play là Android Market, ra mắt vào năm 2008. Ban đầu, đây chỉ là một nơi khiêm tốn để người dùng tải về các ứng dụng cơ bản. Tuy nhiên, nhận thấy tiềm năng to lớn, vào tháng 3 năm 2012, Google đã thực hiện một cuộc tái cấu trúc mang tính bước ngoặt. Họ hợp nhất Android Market, Google Music, và Google eBookstore thành một nền tảng duy nhất dưới cái tên Google Play.
 
 Sự thay đổi này không chỉ là về tên gọi. Nó đánh dấu một sự chuyển mình chiến lược, biến Google Play từ một kho ứng dụng đơn thuần thành một trung tâm giải trí đa phương tiện, nơi người dùng có thể:

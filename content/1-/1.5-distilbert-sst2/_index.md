@@ -8,6 +8,8 @@ pre : " <b> 1.5 </b> "
 
 #### Mô hình distilbert-sst2
 
+![](https://www.mdpi.com/electronics/electronics-09-00483/article_deploy/html/images/electronics-09-00483-g001.png)
+
 ##### Giới thiệu
 distilBERT-SST2 là mô hình DistilBERT được tinh chỉnh trên tập dữ liệu SST-2 để phân tích cảm xúc nhị phân (tích cực/tiêu cực) ở cấp câu. Mô hình nhỏ gọn, suy luận nhanh, độ chính xác tốt cho các bài toán sentiment phổ biến.
 
@@ -19,6 +21,20 @@ distilBERT-SST2 là mô hình DistilBERT được tinh chỉnh trên tập dữ 
 ##### Phân loại văn bản thành tích cực tiêu cực
 
 Sở dĩ dùng model trên do dữ liệu lấy về có cột content chứa đánh giá của người dùng
+
+##### Cách triển khai nhanh
+
+**Hugging Face Transformers:**
+```python
+from transformers import pipeline
+classifier = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+print(classifier("This product is awesome!"))
+```
+
+Output: ```{'label': 'POSITIVE', 'score': 0.999}```
+
+Triển khai dễ dàng trong Flask/FastAPI để làm API phục vụ real-time.
+
 
 ##### Ứng dụng thực tế
 - Phân tích cảm xúc đánh giá ứng dụng, phản hồi khách hàng, bài đăng mạng xã hội.

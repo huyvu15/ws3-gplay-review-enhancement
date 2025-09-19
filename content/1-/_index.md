@@ -10,13 +10,13 @@ pre : " <b> 1. </b> "
 
 #### Tổng quan
 
-Trong quá trình phát triển ứng dụng di động, việc hiểu rõ phản hồi của người dùng là yếu tố sống còn để cải thiện chất lượng sản phẩm, nâng cao trải nghiệm và giữ chân khách hàng. Trên Google Play, mỗi ngày ứng dụng nhận được hàng loạt đánh giá (review) và xếp hạng (rating). Tuy nhiên, dữ liệu này thường tồn tại dưới dạng rời rạc, khó phân tích trực tiếp nếu chỉ nhìn vào bảng thống kê đơn thuần.
+Trong quá trình phát triển ứng dụng di động, việc hiểu rõ phản hồi của người dùng là yếu tố sống còn để cải thiện chất lượng sản phẩm, nâng cao trải nghiệm và giữ chân khách hàng. Trên Google Play, mỗi ngày ứng dụng nhận được hàng loạt đánh giá và xếp hạng. Tuy nhiên, dữ liệu này thường tồn tại dưới dạng rời rạc, khó phân tích trực tiếp nếu chỉ nhìn vào bảng thống kê đơn thuần.
 
 Một báo cáo đánh giá hiệu quả không chỉ dừng lại ở việc tổng hợp số lượng review hay tính trung bình rating, mà cần khai thác sâu hơn:
 
 - Người dùng đang cảm thấy tích cực hay tiêu cực về ứng dụng?
 
-- Chủ đề hoặc vấn đề nào được đề cập nhiều nhất?
+- Tỷ lệ báo cáo của người dùng về hiệu năng, quảng cáo,..?
 
 - Xu hướng cảm xúc thay đổi ra sao theo thời gian?
 
@@ -80,11 +80,11 @@ Automation (Tự động hóa): EventBridge + Step Functions đảm bảo pipeli
 #### Nội dung
 
 1. [Giới thiệu](1-/)
-2. [Chuẩn bị](2-/)
-3. [Dựng crawler lấy dữ liệu](3-/) 
-5. [Tạo Batch Transform job](4-/)
-6. [Tạo và đẩy dữ liệu lên Athena](5-/)
-7. [Dựng dashboard trên QuickSight](6/)
-8. [Dọn dẹp tài nguyên](7-/)
+2. [Các bước chuẩn bị](2-/)
+3. [Tạo model trên Sagemaker](3-/) 
+5. [Tạo lambda lấy dữ liệu và trigger model](4-/)
+6. [Crawler và xử lý dữ liệu trên Glue](5-/)
+7. [Tạo báo cáo trên QuickSight và truy vấn Athena](6/)
+8. [Dọn dẹp tài nguyên](7-/)    
 
 Bây giờ chúng ta sẽ cùng nhau đi qua các khái niệm cơ bản nhất của việc crawl data
