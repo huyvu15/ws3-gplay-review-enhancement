@@ -39,11 +39,11 @@ s3://glutisify-datalake/models/distilbert-sst2/model.tar.gz
 
 | Key                          | Value                     |
 |------------------------------|---------------------------|
-| HF_TASK                      | text-classification       |
-| SAGEMAKER_PROGRAM            | inference.py              |
-| SAGEMAKER_SUBMIT_DIRECTORY   | /opt/ml/model/code        |
-| SAGEMAKER_CONTAINER_LOG_LEVEL| 20                        |
-| SAGEMAKER_REGION             | ap-southeast-1            |
+| HF_TASK                      | ```text-classification```       |
+| SAGEMAKER_PROGRAM            | ```inference.py```            |
+| SAGEMAKER_SUBMIT_DIRECTORY   | ```/opt/ml/model/code ```       |
+| SAGEMAKER_CONTAINER_LOG_LEVEL| ```20```                      |
+| SAGEMAKER_REGION             | ```ap-southeast-1   ```         |
 
 
 ![Create VPC](/images/2/5.png?featherlight=false&width=90pc)

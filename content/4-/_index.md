@@ -8,7 +8,7 @@ pre : " <b> 4. </b> "
 
 #### Tạo lambda lấy dữ liêu và trigger model
 
-Để hệ thống hoạt động trơn tru trước tiên ta cần các lambda function làm đa nhiệm vụ. Từ việc crawl để việc tạo model xử lý cảm xúc
+Để hệ thống hoạt động trơn tru trước tiên ta cần các lambda function làm đa nhiệm vụ. Từ việc crawl để việc gọi model xử lý cảm xúc theo batch
 
 
 #### Nội dung
