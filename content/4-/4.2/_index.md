@@ -1,38 +1,32 @@
 ---
-title : "Tạo lambda lấy data app_reviews"
+title : "Create Lambda to collect app_reviews data"
 date :  "2025-09-11" 
 weight : 2
 chapter : false
 pre : " <b> 4.2 </b> "
 ---
 
+#### Create Lambda to collect app_review data
 
+1. Go to the **Lambda Function** service
 
+- Select **Function**
+- Select **Create function**
+- Set the function name to **crawl-review-maker-chplay**
+- Runtime: **Python3.12**
+- Role: Choose a role with sufficient permissions
 
-#### Tạo lambda thu thập dữ liệu app_review
-
-1. Truy cập service Lambda Function
-
-- Chọn **Funtion**
-- Chọn **Create funtion**
-- Đặt tên function là **crawl-review-maker-chplay**
-- Runtime chọn **Python3.12**
-- Role: Chọn role đủ quyền :>
-
-2. Add layer cho lambda
-- Kéo xuống cuối chọn: **Add a layer** 
+2. Add a layer to the Lambda
+- Scroll down and select: **Add a layer**
 
 ![Create VPC](/images/2/9.png?featherlight=false&width=90pc)
 
-- Chọn **Custum layers**
-- Chọn **google_play_scrape**
+- Choose **Custom layers**
+- Select **google_play_scrape**
 
 ![Create VPC](/images/2/10.png?featherlight=false&width=90pc)
 
-
-
-3. Thêm code vào lambda:
-
+3. Add the following code to Lambda:
 
 ```python
 import json
@@ -61,7 +55,6 @@ def lambda_handler(event, context):
         "com.wallpaperscraft.changer"
     ]
 
-
     today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
     crawled_at = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -87,7 +80,7 @@ def lambda_handler(event, context):
         detail_key = f"chplay/app_details/{package_name}/{today}.json"
         save_to_s3(BUCKET, detail_key, json.dumps(app_detail_record, ensure_ascii=False))
 
-        # ---- Crawl Reviews (lấy toàn bộ và dừng khi gặp review cũ hơn 7 ngày) ----
+        # ---- Crawl Reviews (fetch all and stop when encountering reviews older than 7 days) ----
         all_reviews = reviews_all(
             package_name,
             lang="en",
@@ -102,7 +95,7 @@ def lambda_handler(event, context):
                 continue
 
             if review_date < start_date:
-                # Nếu gặp review cũ hơn 7 ngày thì dừng luôn
+                # Stop if review is older than 7 days
                 break
 
             review_obj = {
@@ -138,13 +131,12 @@ def lambda_handler(event, context):
         "status": "ok",
         "results": results
     }
-```
-
-=> Mỗi khi run code nó sẽ lấy dữ liệu app_review theo từng tuần, lấy theo tuần do thông thường app sẽ ít review nếu đã release lâu ngày.
-
-Ban đầu nên lấy dữ liệu khoảng 1 - 2 năm trở lại để tiện phân tích.
 
 
+👉 Every time this Lambda is executed, it will fetch weekly app_reviews data.
+Fetching weekly data is suitable because most apps have fewer reviews if they have been released for a long time.
+
+Initially, you should collect data from around 1–2 years back to support more comprehensive analysis.
 
 
 

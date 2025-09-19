@@ -1,9 +1,9 @@
 ---
 title : "Add Layer google_play_scraper"
 date :  "2025-09-11" 
-weight : 2 
+weight : 3
 chapter : false
-pre : " <b> 2.2 </b> "
+pre : " <b> 2.3 </b> "
 ---
 
 #### Add Layer google_play_scraper
@@ -68,7 +68,6 @@ aws s3 cp dist/google_play_scraper-0.1.0-py3-none-any.whl s3://glutisify/package
 
 ![Create VPC](/images/2/2.png?featherlight=false&width=90pc)
 
-=> Đây là cách 1 layer được ra đời :>>
 
 #### Tham khảo
 [pip install google_play_scraper](https://pypi.org/project/google-play-scraper/)

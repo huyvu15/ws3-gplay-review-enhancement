@@ -1,24 +1,20 @@
 ---
-title : "Crawler và xử lý dữ liệu trên Glue"
+title : "Crawler and Data Processing on Glue"
 date :  "2025-09-11" 
 weight : 5 
 chapter : false
 pre : " <b> 5. </b> "
 ---
 
-#### Crawler và xử lý dữ liệu trên Glue
+#### Crawler and Data Processing on Glue
 
-Bắt đầu tạo từng crawler cho từng layer lưu trữ dữ liệu
-
+Start by creating individual crawlers for each data storage layer.
 
 {{% notice note %}}
-Trên là một số dữ liệu mình đã thêm vào từ trước
+The above shows some sample data that I added earlier.
 {{% /notice %}}
 
+#### Content 
 
-
-
-#### Nội dung 
-
-1. [Tạo job ETL bằng Glue job](4.1-createec2/)
-2. [Tạo crawler cho layer chplay-gold](4.2-connectec2/)
+1. [Create an ETL Job with Glue Job](4.1-createec2/)  
+2. [Create a Crawler for the chplay-gold Layer](4.2-connectec2/)  

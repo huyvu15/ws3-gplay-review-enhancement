@@ -1,24 +1,22 @@
 ---
-title : "Tạo lambda lấy triger module xử lý dữ liệu"
-date :  "2025-09-11" 
-weight : 3
-chapter : false
-pre : " <b> 4.3 </b> "
+title: "Create lambda to trigger data processing module"
+date: "2025-09-11"
+weight: 3
+chapter: false
+pre: " <b> 4.3 </b> "
 ---
 
-#### Tạo lambda thu thập dữ liệu app_review
+#### Create lambda to collect app_review data
 
-1. Truy cập service Lambda Function
+1. Access Lambda Function service
 
-- Chọn **Funtion**
-- Chọn **Create funtion**
-- Đặt tên function là **run-sentiment-app-review-batch-transform**
-- Runtime chọn **Python3.12**
-- Role: Chọn role đủ quyền :>
+   - Select **Function**
+   - Select **Create function**
+   - Name the function **run-sentiment-app-review-batch-transform**
+   - Runtime select **Python3.12**
+   - Role: Select a role with sufficient permissions :>
 
-
-2. Thêm code vào lambda:
-
+2. Add code to lambda:
 
 ```python
 import json
@@ -37,7 +35,7 @@ s3 = boto3.client("s3")
 
 
 def create_batch_job(input_uri, filename):
-    """Tạo batch transform job với cấu hình chuẩn cho JSON Lines."""
+    """Create batch transform job with standard configuration for JSON Lines."""
     file_date = filename.replace(".json", "")
     job_name = f"{MODEL_NAME}-batch-{file_date}-{int(time.time())}"
 
@@ -67,7 +65,7 @@ def create_batch_job(input_uri, filename):
 
 
 def process_file(bucket, key):
-    """Kiểm tra và xử lý một file từ S3."""
+    """Check and process a file from S3."""
     filename = key.split("/")[-1]
     
     if not filename.endswith(".json"):
@@ -84,15 +82,15 @@ def process_file(bucket, key):
         if e.response['Error']['Code'] == '404':
             return create_batch_job(input_uri, filename)
         else:
-            print(f"Lỗi khi kiểm tra S3: {e}")
+            print(f"Error checking S3: {e}")
             raise
 
 def lambda_handler(event, context):
-    """Entry point: Xử lý trigger từ S3 hoặc chạy thủ công."""
+    """Entry point: Process S3 trigger or run manually."""
     try:
         jobs = []
         if "Records" in event:
-            print("Chế độ trigger từ S3 Event.")
+            print("S3 Event trigger mode.")
             for record in event["Records"]:
                 bucket = record["s3"]["bucket"]["name"]
                 key = urllib.parse.unquote_plus(record["s3"]["object"]["key"])
@@ -102,7 +100,7 @@ def lambda_handler(event, context):
                         jobs.append(job)
 
         else:
-            print("Chế độ chạy thủ công (manual).")
+            print("Manual run mode.")
             response = s3.list_objects_v2(Bucket=INPUT_BUCKET, Prefix=INPUT_PREFIX)
             for obj in response.get("Contents", []):
                 job = process_file(INPUT_BUCKET, obj["Key"])
@@ -120,11 +118,4 @@ def lambda_handler(event, context):
         return {"statusCode": 500, "body": json.dumps({"error": str(e)})}
 ```
 
-=> Mỗi khi run code nó sẽ gọi job batch transform trên sagemaker ai để sử lý dữ liệu review đã crawl về
-
-
-
-
-
-
-
+⇒ Each time the code runs, it will call a batch transform job on SageMaker AI to process the crawled review data

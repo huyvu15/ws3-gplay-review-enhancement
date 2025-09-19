@@ -1,20 +1,20 @@
 ---
-title : "Tạo model distilbert-sst2 và đẩy lên s3"
+title : "Create distilbert-sst2 model and upload to s3"
 date :  "2025-09-11" 
 weight : 4
 chapter : false
 pre : " <b> 2.4 </b> "
 ---
 
-#### Tải model về máy
+#### Download model to local machine
 
-1. Tạo file main.py:
+1. Create main.py file:
 
 ```bash
 vi main.py
 ```
 
-Thêm nội dung file:
+Add file content:
 
 ```python
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -33,8 +33,8 @@ Run code:
 uv run main.py
 ```
 
-1. Truy cập vào phần model
-- Tạo 1 folder mới chưa inference
+1. Access the model section
+- Create a new folder for inference
 
 ```bash
 mkdir code
@@ -42,7 +42,7 @@ cd code
 vi inference.py
 ```
 
-Thêm nội dung:
+Add content:
 ```python
 import json
 import os
@@ -50,8 +50,8 @@ from transformers import pipeline
 
 def model_fn(model_dir):
     """
-    Hàm này được SageMaker gọi để tải model.
-    Linh hoạt với cấu trúc thư mục của model.
+    This function is called by SageMaker to load the model.
+    Flexible with model directory structure.
     """
     candidate_subdir = os.path.join(model_dir, "model")
     model_path = candidate_subdir if os.path.isdir(candidate_subdir) else model_dir
@@ -67,7 +67,7 @@ def model_fn(model_dir):
 
 def input_fn(request_body, request_content_type):
     """
-    Hàm này xử lý một dòng JSON duy nhất, phù hợp với BatchStrategy=SINGLE_RECORD.
+    This function processes a single JSON line, suitable for BatchStrategy=SINGLE_RECORD.
     """
     if request_content_type == 'application/jsonlines':
         if isinstance(request_body, bytes):
@@ -78,8 +78,8 @@ def input_fn(request_body, request_content_type):
 
 def predict_fn(input_data, model):
     """
-    Hàm này thực hiện dự đoán trên một record duy nhất.
-    Quan trọng: Nó sẽ phát hiện ngôn ngữ trước khi dự đoán.
+    This function performs prediction on a single record.
+    Important: It will detect language before prediction.
     """
     review_text = input_data.get('content', '').strip()
     
@@ -90,7 +90,7 @@ def predict_fn(input_data, model):
 
 def output_fn(prediction, accept):
     """
-    Hàm này định dạng kết quả đầu ra cho một record.
+    This function formats the output result for one record.
     """
     if accept == "application/jsonlines":
         return json.dumps(prediction, ensure_ascii=False) + '\n'
@@ -98,11 +98,11 @@ def output_fn(prediction, accept):
     raise ValueError(f"Unsupported accept type: {accept}")
 ```
 
-3. Nén lại tành file model..tar
+3. Compress into model.tar file
 ```bash
 tar -czf model.tar.gz distilbert-sst2/
 ```
-- Nên dùng code này để nén:
+- Should use this code for compression:
 
 ```python
 import os
@@ -149,19 +149,11 @@ if __name__ == "__main__":
     fix_model_package()
 ```
 
-
-
-1. Đẩy lên s3
+1. Upload to S3
 ```bash
 aws s3 cp model.tar.gz s3://glutisify-datalake/models/distilbert-sst2-fixed/
 ```
 
-
-
 {{% notice tip %}}
-Các file code trên chỉ hiệu quả khi bạn cài xong môi trường, ở đây mình dùng uv do uv nhanh gấp 10 lần pip
+The code files above are only effective when you have completed the environment setup. Here I use uv because uv is 10 times faster than pip
 {{% /notice %}}
-
-
-
-

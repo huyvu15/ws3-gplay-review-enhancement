@@ -1,25 +1,22 @@
 ---
-title : "Các key cần chuẩn bị"
-date :  "2025-09-11" 
-weight : 5
-chapter : false
-pre : " <b> 4.5  </b> "
+title: "Keys to prepare"
+date: "2025-09-11"
+weight: 5
+chapter: false
+pre: " <b> 4.5  </b> "
 ---
 
+#### Before starting
+Before starting, you need to have keys for lambda functions to work properly
 
-#### Trước khi bắt đầu
-Trước khi bắt đầu bạn cần phải có các key cho lambda function hướng đến và hoạt động tốt
+##### App list
 
+To get the package_name of apps,
 
-##### Danh sách các app
+1. Access: `https://play.google.com`
 
-Để lấy package_name của các app, 
-
-1. Truy cập: ```https://play.google.com```
-
-- Chọn các app bất kỳ cần checking:
-
-- Ví dụ chọn **Tiktok**
+   - Select any apps that need checking:
+   - For example, select **TikTok**
 
 ![Create VPC](/images/2/7.png?featherlight=false&width=90pc)
 
@@ -27,11 +24,11 @@ Trước khi bắt đầu bạn cần phải có các key cho lambda function h�
 
 ![Create VPC](/images/2/8.png?featherlight=false&width=90pc)
 
-=> Package_name: ```com.zhiliaoapp.musically```
+⇒ Package_name: `com.zhiliaoapp.musically`
 
-3. Ở đây tôi ko dùng tiktok mà chọn ra 5 app hình nền (do đối thủ của tôi là các app này và tôi phải nghiên cứu đối thủ của mình)
+3. Here I don't use TikTok but choose 5 wallpaper apps (because my competitors are these apps and I need to study my competitors)
 
-```
+```python
 package_list = [
         "com.lumina.wallpapers",
         "com.b_lam.resplash",
@@ -40,8 +37,6 @@ package_list = [
         "com.wallpaperscraft.changer"
     ]
 ```
-
-
 
 ##### 1. Lumina Wallpapers
 ![Lumina Wallpapers](https://play-lh.googleusercontent.com/YvmxumcCG5G4rrC0bngISYuSSZS_V7VKNoVvHaee8YohgvkP7wT9FcVC0wK5kopXyKY=w480-h960-rw)
@@ -58,6 +53,4 @@ package_list = [
 ##### 5. WallpapersCraft Changer
 ![WallpapersCraft Changer](https://play-lh.googleusercontent.com/moSpjO5FXBkR-td6evsqregnN2Jwlsp34bTKdBQL4rfSvWSuUp02OWHDjSyXIjfh=w480-h960-rw)
 
-
-
-=> Mọi người có thể tùy biến các app game hoặc mạng xã hội, tuy nhiên các app lớn sẽ có rất nhiều đánh giá trong ngày   
+⇒ You can customize gaming or social media apps, however large apps will have many reviews per day

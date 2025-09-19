@@ -1,76 +1,71 @@
 ---
-title : "Tăng cường dữ liệu cho báo cáo đánh giá app trên market"
-date :  "2025-09-11" 
-weight : 1 
-chapter : false
+title: "Enhanced data for app review reports on market"
+date: "2025-09-11"
+weight: 1
+chapter: false
 ---
 
-# Tăng cường dữ liệu cho báo cáo đánh giá app trên Google Play
+# Enhanced Data for Google Play App Review Reports
 
 ![](https://citgroup.vn/wp-content/uploads/2024/02/app-giao-do-an-1.png)
 
 <!-- ![Create VPC](/images/teleBot.webp?featherlight=false&width=75pc&height=30pc) -->
 
+#### Overview
 
-#### Tổng quan
+In the increasingly competitive mobile app landscape, monitoring and analyzing user feedback on Google Play is a crucial factor that helps development teams improve product quality. However, raw review data is often fragmented and difficult to immediately leverage for reporting purposes.
 
-Trong bối cảnh ứng dụng di động ngày càng cạnh tranh, việc theo dõi và phân tích phản hồi của người dùng trên Google Play là yếu tố quan trọng giúp đội ngũ phát triển cải thiện chất lượng sản phẩm. Tuy nhiên, dữ liệu đánh giá thô thường rời rạc và khó khai thác ngay cho mục đích báo cáo.
+To address this, we can build an automated pipeline:
 
-Để khắc phục điều này, ta có thể xây dựng một pipeline tự động hóa:
+- Collect review data daily.
 
-- Thu thập dữ liệu đánh giá hằng ngày.
+- Process and enrich data (e.g., user sentiment analysis).
 
-- Xử lý và làm giàu dữ liệu (ví dụ phân tích cảm xúc người dùng).
+- Store and visualize on dashboards.
 
-- Lưu trữ và trực quan hóa trên dashboard.
+Through this approach, reports don't just stop at review counts or ratings, but also provide deeper insights into user satisfaction levels, emotional trends over time, and areas for improvement.
 
-Nhờ cách tiếp cận này, báo cáo không chỉ dừng ở số lượng review hay rating, mà còn cung cấp cái nhìn sâu hơn về mức độ hài lòng của người dùng, xu hướng cảm xúc theo thời gian, và các điểm cần cải thiện.
+#### Services Used:
 
-
-#### Các Service sử dụng:
-
-Quy trình triển khai có thể tận dụng nhiều dịch vụ AWS để đảm bảo **tự động, mở rộng linh hoạt và tối ưu chi phí**:
+The deployment process can leverage multiple AWS services to ensure **automation, flexible scaling, and cost optimization**:
 
 **1. AWS Lambda Function:**  
-- Chạy function crawler để lấy dữ liệu review từ Google Play.  
-- Tự động scale theo số lượng request, không cần quản lý server.  
+- Run crawler function to retrieve review data from Google Play.  
+- Automatically scale based on request volume, no server management required.  
 
 **2. Amazon S3:**  
-- Lưu trữ dữ liệu thô (raw data) sau khi cào từ Google Play.  
-- Dùng làm input/output trong các bước xử lý tiếp theo.  
+- Store raw data after scraping from Google Play.  
+- Used as input/output in subsequent processing steps.  
 
 **3. Amazon SageMaker (Batch Transform):**  
-- Xử lý dữ liệu review bằng mô hình sentiment analysis.  
-- Chạy inference theo batch, tiết kiệm chi phí cho workload định kỳ.  
+- Process review data using sentiment analysis models.  
+- Run batch inference, cost-effective for periodic workloads.  
 
 **4. Amazon EventBridge:**  
-- Đặt lịch trigger pipeline hằng ngày.  
-- Đảm bảo quy trình ETL diễn ra tự động mà không cần can thiệp thủ công.  
+- Schedule daily pipeline triggers.  
+- Ensure ETL process runs automatically without manual intervention.  
 
-**5. Amazon Athena / Amazon Redshift (tùy nhu cầu):**  
-- Truy vấn và tổng hợp dữ liệu đã xử lý.  
-- Làm nguồn dữ liệu cho báo cáo/dashboard.  
+**5. Amazon Athena / Amazon Redshift (as needed):**  
+- Query and aggregate processed data.  
+- Serve as data source for reports/dashboards.  
 
 **6. Amazon QuickSight:**  
-- Trực quan hóa dữ liệu.  
-- Xây dựng dashboard theo dõi xu hướng sentiment, số lượng review, rating trung bình…  
+- Data visualization.  
+- Build dashboards to track sentiment trends, review counts, average ratings...  
 
+→ However, for simplicity and the most convenient demonstration, this lab will only implement some simple features that can be executed immediately. Readers can easily develop additional features based on their individual needs and characteristics.
 
-
-→ Tuy nhiên để đơn giản và demo một cách thuận tiện nhất có thể bài lab chỉ thực hiện một số những tính năng đơn giản và có thể thực hiện được ngay. Độc giả có thể dễ dàng phát triển thêm các tinh năng khác dựa theo từng nhu cầu và đặc điểm của bản thân. 
-
-#### Ngôn ngữ chính để phục vụ workshop này là python 3.12
+#### The primary language for this workshop is Python 3.12
 
 <!-- ![Create VPC](/images/schema.png?featherlight=false&width=90pc) -->
 ![Create VPC](/images/schema.png)
 
+#### Content
 
-#### Nội dung
-
-1. [Giới thiệu](1-/)
-2. [Các bước chuẩn bị](2-/)
-3. [Tạo model trên Sagemaker](3-/) 
-5. [Tạo lambda lấy dữ liệu và trigger model](4-/)
-6. [Crawler và xử lý dữ liệu trên Glue](5-/)
-7. [Tạo báo cáo trên QuickSight và truy vấn Athena](6/)
-8. [Dọn dẹp tài nguyên](7-/)    
+1. [Introduction](1-/)
+2. [Preparation Steps](2-/)
+3. [Create model on Sagemaker](3-/) 
+4. [Create lambda for data collection and model triggering](4-/)
+5. [Crawler and data processing on Glue](5-/)
+6. [Create reports on QuickSight and Athena queries](6/)
+7. [Resource cleanup](7-/)

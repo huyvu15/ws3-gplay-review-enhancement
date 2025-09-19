@@ -14,7 +14,7 @@ chapter : false
 
 #### Tổng quan
 
-Trong bối cảnh ứng dụng di động ngày càng cạnh tranh, việc theo dõi và phân tích phản hồi của người dùng trên Google Play là yếu tố quan trọng giúp đội ngũ phát triển cải thiện chất lượng sản phẩm. Tuy nhiên, dữ liệu đánh giá thô (reviews) thường rời rạc và khó khai thác ngay cho mục đích báo cáo.
+Trong bối cảnh ứng dụng di động ngày càng cạnh tranh, việc theo dõi và phân tích phản hồi của người dùng trên Google Play là yếu tố quan trọng giúp đội ngũ phát triển cải thiện chất lượng sản phẩm. Tuy nhiên, dữ liệu đánh giá thô thường rời rạc và khó khai thác ngay cho mục đích báo cáo.
 
 Để khắc phục điều này, ta có thể xây dựng một pipeline tự động hóa:
 
@@ -68,9 +68,9 @@ Quy trình triển khai có thể tận dụng nhiều dịch vụ AWS để đ�
 #### Nội dung
 
 1. [Giới thiệu](1-/)
-2. [Chuẩn bị](2-/)
-3. [Dựng crawler lấy dữ liệu](3-/) 
-5. [Tạo Batch Transform job](4-/)
-6. [Tạo và đẩy dữ liệu lên Athena](5-/)
-7. [Dựng dashboard trên QuickSight](6/)
-8. [Dọn dẹp tài nguyên](7-/)
+2. [Các bước chuẩn bị](2-/)
+3. [Tạo model trên Sagemaker](3-/) 
+5. [Tạo lambda lấy dữ liệu và trigger model](4-/)
+6. [Crawler và xử lý dữ liệu trên Glue](5-/)
+7. [Tạo báo cáo trên QuickSight và truy vấn Athena](6/)
+8. [Dọn dẹp tài nguyên](7-/)    

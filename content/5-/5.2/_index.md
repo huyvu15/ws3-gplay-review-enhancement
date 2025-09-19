@@ -1,78 +1,65 @@
 ---
-title : "Tạo crawler cho layer Chplay-gold"
-date :  "2025-09-11" 
-weight : 2
-chapter : false
-pre : " <b> 5.2  </b> "
+title: "Create crawler for Chplay-gold layer"
+date: "2025-09-11"
+weight: 2
+chapter: false
+pre: " <b> 5.2  </b> "
 ---
 
+#### Create crawler for gold layer
 
-#### Tạo crawler cho layer gold
+For quick and focused setup, everyone should create the main crawler for the gold layer, and do the same for the rest!
 
-Để nhanh gọn và tập chung thì mọi người tọa crawl chính cho layer gold layer, còn lại mọi người làm tương tự nha!
-
-1. Truy cập giao diện **AWS Glue**
-
-- Chọn **Crawlers**
-- Chọn **Create crawler**
-
+1. Access **AWS Glue** interface
+   - Select **Crawlers**
+   - Select **Create crawler**
 
 ![Create VPC](/images/5/1.png?featherlight=false&width=90pc)
 
-2. Nhập:
-- Name: ```chplay-gold```
-- Description: ```Data after processed```
-- Chọn **Next**
+2. Enter:
+   - Name: `chplay-gold`
+   - Description: `Data after processed`
+   - Select **Next**
 
 ![Create VPC](/images/5/2.png?featherlight=false&width=90pc)
 
-3. Chọn **Add a data source**
-- Chọn đúng thư mục s3: ```chplay-gold```
-- Chọn **Next**
+3. Select **Add a data source**
+   - Select the correct S3 folder: `chplay-gold`
+   - Select **Next**
 
 ![Create VPC](/images/5/3.png?featherlight=false&width=90pc)
 
-4. Chọn IAM role phù hợp
-- Chọn **Next**
+4. Select appropriate IAM role
+   - Select **Next**
 
 ![Create VPC](/images/5/4.png?featherlight=false&width=90pc)
 
-5. Từ giao diện **AWS Glue**
-- Chọn **Databases**
-- Chọn **Create database**
-- Name: ```chplay-gold```
-- Chọn **Create database**
+5. From **AWS Glue** interface
+   - Select **Databases**
+   - Select **Create database**
+   - Name: `chplay-gold`
+   - Select **Create database**
 
 ![Create VPC](/images/5/5.png?featherlight=false&width=90pc)
 
-6. Phần set Output
-- Chọn Target database: ```chplay-gold```
-- Chọn **Next**
+6. In the set Output section
+   - Select Target database: `chplay-gold`
+   - Select **Next**
 
 ![Create VPC](/images/5/6.png?featherlight=false&width=90pc)
 
-
-Lưu ý:
+Note:
 
 {{% notice note %}}
-Có thể tự chọn phân cấp thư mục bằng mục prefix
+You can choose folder hierarchy using the prefix option
 {{% /notice %}}
 
-
-7. Review lại một lượt
-
-
+7. Review everything once more
 
 ![Create VPC](/images/5/7.png?featherlight=false&width=90pc)
 
-
-8. Nhận **Run crawler**
+8. Click **Run crawler**
 
 ![Create VPC](/images/5/8.png?featherlight=false&width=90pc)
 
-=> Lúc này AWS Glue Crawler đã tạo catalog cho 2 bảng app_details, app_reviews
-
-
-
-
-
+⇒ At this point, AWS Glue Crawler has created a catalog for 2 tables: app_details and app_reviews

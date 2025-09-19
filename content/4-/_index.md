@@ -1,20 +1,19 @@
 ---
-title : "Tạo lambda lấy dữ liêu và trigger model"
-date :  "2025-09-11" 
-weight : 4
-chapter : false
-pre : " <b> 4. </b> "
+title: "Create lambda to get data and trigger model"
+date: "2025-09-11"
+weight: 4
+chapter: false
+pre: " <b> 4. </b> "
 ---
 
-#### Tạo lambda lấy dữ liêu và trigger model
+#### Create lambda to get data and trigger model
 
-Để hệ thống hoạt động trơn tru trước tiên ta cần các lambda function làm đa nhiệm vụ. Từ việc crawl để việc gọi model xử lý cảm xúc theo batch
+For the system to operate smoothly, we first need **Lambda functions** to perform multiple tasks: from crawling data to calling sentiment processing models in batches.
 
+#### Content
 
-#### Nội dung
-
-1. [Các key cần chuẩn bị]()
-2. [Tạo lambda lấy data app_details]()
-3. [Tạo lambda lấy data app_reviews]()
-4. [Tạo lambda triggle modele xử lý dữ liệu]()
-5. [Tạo job Step Function và EventBridge](/4-/4.4/)
+1. [Keys to prepare]()
+2. [Create lambda to get **app_details** data]()
+3. [Create lambda to get **app_reviews** data]()
+4. [Create lambda to trigger data processing model]()
+5. [Create Step Function job and EventBridge](/4-/4.4/)

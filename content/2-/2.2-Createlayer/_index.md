@@ -8,66 +8,66 @@ pre : " <b> 2.3 </b> "
 
 #### Add Layer google_play_scraper
 
-Có rất nhiều layer có sẵn được các người dùng khác đóng gói và chia sẻ trên các repo github. Tuy nhiên đó chỉ là các layer rất là phổ biến còn đa số các thư viện còn lại sẽ không được như vậy.
+There are many pre-built layers packaged and shared by other users on GitHub repositories. However, those are only very common layers, while most other libraries won't be available as such.
 
-Tại đây mình sẽ hướng dẫn bạn đóng gói chung cho các layer
+Here I will guide you on how to package layers collectively.
 
-**Một vài cái cần phải lưu ý:**
-- Không phải package nào cũng đóng gói được thành layer, AWS chỉ cho phép kích thước zip tối đa là 50MB, và 250MB trên s3
-- Việc tạo package bạn có thể tạo ở local và đấy ngược lên s3
+**A few things to note:**
+- Not every package can be packaged as a layer, AWS only allows a maximum zip size of 50MB, and 250MB on S3
+- For package creation, you can create locally and push to S3
 
-**Việc hiện tại cần làm:**
-- Chuẩn bị một server linux (có thể là máy bạn) hoặc dùng trực tiếp cloud shell
-- Đã cài aws cli
-- Thực hiện lần lượt các câu lệnh sau:
+**Current tasks needed:**
+- Prepare a Linux server (could be your machine) or use Cloud Shell directly
+- Have AWS CLI installed
+- Execute the following commands sequentially:
 
-1. Tạo cấu trúc thư mục
+1. Create directory structure
 ```bash
 mkdir google_play_scraper_layer
 cd google_play_scraper_layer
 mkdir -p python
 ```
 
-2. Cài thư viện Python
+2. Install Python library
 
 ```bash
 pip install google_play_scraper -t python/
 ```
 
-3. Đóng gói zip
+3. Package as zip
 
 ```bash
 zip -r9 google_play_scraper_layer.zip python
 ```
 
-4. Upload file lên s3
+4. Upload file to S3
 
 ```bash
 aws s3 cp dist/google_play_scraper-0.1.0-py3-none-any.whl s3://glutisify/package/
 ```
-#### Tạo layer trên giao diện
+#### Create layer on the interface
 
-1. Trong giao diện **AWS Management Console**
+1. In the **AWS Management Console**
 
-   - Chọn **Lambda**
-   - Chọn **Layer**
-   - Chọn **Create layer**
+   - Select **Lambda**
+   - Select **Layer**
+   - Select **Create layer**
 
 ![Create VPC](/images/2/1.png?featherlight=false&width=90pc)
 
 
-2. Tiếp tục chọn
+2. Continue to select
 
-- Tại name điền ```google_play_scraper```
-- Tại description điền ``` google_play_scraper package```
-- Chọn upload từ s3
-- Tại Amazon S3 link URL điền ```s3://glutisify-datalake/package/google_play_scraper_layer.zip```
-- Tại architectures chọn ```arm64, x86_64```
-- Chọn ```Python 3.12```
-- Chọn **Create**
+- At name field, enter ```google_play_scraper```
+- At description field, enter ``` google_play_scraper package```
+- Choose upload from S3
+- At Amazon S3 link URL field, enter ```s3://glutisify-datalake/package/google_play_scraper_layer.zip```
+- At architectures, select ```arm64, x86_64```
+- Select ```Python 3.12```
+- Select **Create**
 
 ![Create VPC](/images/2/2.png?featherlight=false&width=90pc)
 
 
-#### Tham khảo
+#### Reference
 [pip install google_play_scraper](https://pypi.org/project/google-play-scraper/)

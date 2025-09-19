@@ -1,74 +1,68 @@
 ---
-title : "Tạo báo cáo trên QuickSight"
-date :  "2025-09-11" 
-weight : 2
-chapter : false
-pre : " <b> 6.2 </b> "
+title: "Create report on QuickSight"
+date: "2025-09-11"
+weight: 2
+chapter: false
+pre: " <b> 6.2 </b> "
 ---
 
+#### Create report on QuickSight
 
-#### Tạo báo cáo trên QuickSight
-
-1. Tìm kiếm service QuickSight
+1. Search for QuickSight service
 ![Create VPC](/images/6/1.png?featherlight=false&width=90pc)
 
-2. Đăng ký một tài khoản người dùng mới
+2. Sign up for a new user account
 ![Create VPC](/images/6/2.png?featherlight=false&width=90pc)
 
-3. Điền đầy đủ thông tin
+3. Fill in complete information
 ![Create VPC](/images/6/3.png?featherlight=false&width=90pc)
 
-4. Chọn region Singapo và Tích chọn Athena
+4. Select Singapore region and check Athena
 ![Create VPC](/images/6/4.png?featherlight=false&width=90pc)
 
-5. Bỏ chọn **Add Pixel-Pefect-Report**
-- Chọn **Finish**
+5. Uncheck **Add Pixel-Perfect-Report**
+   - Select **Finish**
 ![Create VPC](/images/6/5.png?featherlight=false&width=90pc)
 
-6. Đợi tài khoản được tạo
+6. Wait for account to be created
 ![Create VPC](/images/6/6.png?featherlight=false&width=90pc)
 
-7. Giao diện ban đầu của QuickSight
+7. Initial QuickSight interface
 ![Create VPC](/images/6/7.png?featherlight=false&width=90pc)
 
-
-8. Chọn **Dataset**
-- Chọn **New dataset**
+8. Select **Dataset**
+   - Select **New dataset**
 
 ![Create VPC](/images/6/8.png?featherlight=false&width=90pc)
 
-9. Chọn Athena
+9. Select Athena
 
 ![Create VPC](/images/6/9.png?featherlight=false&width=90pc)
 
-10.  Điền tên cho source ```chplay-app-data-rating```
-
+10. Enter name for source `chplay-app-data-rating`
 
 ![Create VPC](/images/6/11.png?featherlight=false&width=90pc)
 
-11. Chọn database **chplay-gold**
-- Chọn table **app_reviews**
+11. Select database **chplay-gold**
+    - Select table **app_reviews**
 
 ![Create VPC](/images/6/12.png?featherlight=false&width=90pc)
 
-12. Tương tự chọn table **app_details**
+12. Similarly select table **app_details**
 ![Create VPC](/images/6/13.png?featherlight=false&width=90pc)
 
-13. Trực quan 2 bảng:
+13. Visualize 2 tables:
 
 ![Create VPC](/images/6/20.png?featherlight=false&width=90pc)
 ![Create VPC](/images/6/21.png?featherlight=false&width=90pc)
 
-
-
-14. Tại giao diện QuickSight
-- Chọn **Analyses**
-- Chọn **New analysis**
+14. In the QuickSight interface
+    - Select **Analyses**
+    - Select **New analysis**
 
 ![Create VPC](/images/6/22.png?featherlight=false&width=90pc)
 
-
-15. Kéo thả các dashboad, dưới đây là các ví dụ chart bạn có thể tạo
+15. Drag and drop dashboards, below are example charts you can create
 
 **App_details**
 

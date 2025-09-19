@@ -1,28 +1,23 @@
 ---
-title : "Tạo báo cáo trên QuickSight và truy vấn Athena"
+title : "Create Reports on QuickSight and Query with Athena"
 date :  "2025-09-11" 
 weight : 6 
 chapter : false
 pre : " <b> 6. </b> "
 ---
 
-### Tạo báo cáo trên QuickSight và truy vấn Athena
+### Create Reports on QuickSight and Query with Athena
 
-Tạo báo cáo trên QuickSight và truy vấn Athena
-
-
+Build reports using QuickSight and query data with Athena.  
 
 <!-- ![Create VPC](/images/5-CreateVPNenv/12.png?featherlight=false&width=90pc) -->
 
 <!-- {{% notice tip %}}
-Từ file dữ liệu này bạn có thể tùy ý phân tích theo ý muốn.
+From this dataset, you can freely perform any analysis as you like.
 {{% /notice %}} -->
 
-
-
-
-**Nội dung:**
-1. [Thêm code vào lambda function](6.1)
-2. [Chat với chatbot](6.2)
-3. [Check log](6.3)
-4. [Export to S3](6.4)
+**Contents:**
+1. [Add code to Lambda function](6.1)  
+2. [Chat with chatbot](6.2)  
+3. [Check logs](6.3)  
+4. [Export to S3](6.4)  

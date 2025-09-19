@@ -6,24 +6,23 @@ chapter : false
 pre : " <b> 1.3 </b> "
 ---
 
-
-#### Về Layer
+#### About Layer
 
 ![Layer](/images/1-Introduce/layer.png?featherlight=false&width=40pc)
 
+- A **Layer** here refers to packages that extend beyond the built-in methods of the programming language.  
+  To simplify: you can think of a layer as similar to Python libraries—you just import them and use them as usual.  
+  (By default, AWS Lambda functions don’t include external libraries; you must add them through layers).  
 
-- Layer ở đây là các package, bên ngoài các method gốc của ngôn ngữ lập trình thông thường. Để đơn giản hãy tưởng tượng layer tương tự như các thư viện trong python và mình chỉ việc import vào và sử dụng nó như bình thường(mặc định lambda function không có sẵn các thư viện mà phải thêm vào thông qua layers).
-- Mỗi Lambda function được add tối đa 5 layers.
-- Một lambda function không thể thêm nhiều layer quá số bit cho trước nếu thêm quá sẽ hiện cảnh báo đỏ.
+- Each Lambda function can include **up to 5 layers**.  
 
+- A Lambda function cannot exceed the maximum size limit for layers. If it does, AWS will show a red warning.  
 
- 
-- Có 2 cách để thêm layer:
-    + Thêm trực tiếp bằng cách zip các file trong thư viện gốc rồi đẩy lên layer (tốn thời gian để nén và có khi ko ăn với lambda hoặc cũng có thể zip thiếu).
-    + Cũng zip lại và tải trực tiếp vào lambda function.
-    + The layer bằng cách copy ARNs(của những người đã tạo trước đó) cùng với version tương ứng.
+---
 
-Link ARNs tham khảo: **```https://github.com/keithrozario/Klayers```**
+- There are two ways to add a layer:  
+  + Upload directly: zip the original library files and push them to a layer (time-consuming, may cause compatibility issues with Lambda, or risk missing files when zipping).  
+  + Upload a zipped package directly into the Lambda function.  
+  + Use existing layers: copy **ARNs** (from layers others have created) along with the corresponding version.  
 
-
-
+Reference ARN repository: **```https://github.com/keithrozario/Klayers```**

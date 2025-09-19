@@ -1,21 +1,20 @@
 ---
-title : "Tạo 1 IAM role đủ quyền"
+title : "Create an IAM role with sufficient permissions"
 date :  "2025-09-11" 
 weight : 1
 chapter : false
 pre : " <b> 2.1 </b> "
 ---
 
-#### Tạo 1 IAM role đủ quyền
+#### Create an IAM role with sufficient permissions
 
-1. Trong giao diện **IAM**
+1. In the **IAM** interface
 
-   - Kéo xuống cuối chọn **Role**
-   - Chọn Create role
-   - Đặt tên là: ```1-role-d4jxk5zk```
+   - Scroll down to the bottom and select **Role**
+   - Select Create role
+   - Name it: ```1-role-d4jxk5zk```
 
-
-2. Lần lượt thêm cái role:
+2. Add the following roles sequentially:
 
 - Cloud Watch full access
 
@@ -65,7 +64,7 @@ pre : " <b> 2.1 </b> "
 
 - Sagemaker full access
 
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [

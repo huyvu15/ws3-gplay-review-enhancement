@@ -6,36 +6,35 @@ chapter : false
 pre : " <b> 1.6 </b> "
 ---
 
-### Về Sagemaker
+### About Sagemaker
 
 ![](https://miro.medium.com/v2/resize:fit:1400/1*o-Gim_HB9n8UzRBZHhM9ow.png )
 
-Sagemaker cho phép đơn giản hóa việc triển khai các mô hình học máy một cách dễ dàng. Khi training một model, bạn muốn gọi Sagemaker với một số dữ liệu đầu vào. Tại đây sagemaker cung cấp 4 tùy chọn chi phí và giới hạn:
+Sagemaker allows for simplified deployment of machine learning models with ease. When training a model, you want to call Sagemaker with some input data. Here, Sagemaker provides 4 cost and limit options:
 
 ![](https://miro.medium.com/v2/resize:fit:1100/format:webp/0*UPAdQ0VLtFe0OPAx.png)
 
 #### Sagemaker Batch Transform 
 
-##### Giới thiệu
-SageMaker Batch Transform là dịch vụ suy luận hàng loạt dùng để chạy mô hình ML trên tập dữ liệu có sẵn, lưu kết quả trực tiếp về S3. Phù hợp cho các kịch bản không yêu cầu độ trễ thấp và cần xử lý khối lượng dữ liệu lớn theo lô.
+##### Introduction
+SageMaker Batch Transform is a batch inference service used to run ML models on existing datasets, saving results directly to S3. It's suitable for scenarios that don't require low latency and need to process large volumes of data in batches.
 
-Sử dụng Batch Transform giúp không cần phải duy trì một cái endpoint liên tục và chỉ muốn thực hiện inference cho 1 tập dữ liệu theo thời điểm. Sagemaker Batch Transform serverless, scalable, and cost-effective solution for running batch inferences on large datasets.
-
+Using Batch Transform eliminates the need to maintain a continuous endpoint and is only needed when performing inference on a dataset at specific times. Sagemaker Batch Transform is a serverless, scalable, and cost-effective solution for running batch inferences on large datasets.
 
 => Sagemaker Batch Transform = ECS + S3
 
-##### Khái niệm
-- Chạy inference theo lô thay vì theo yêu cầu thời gian thực.
-- Đọc dữ liệu đầu vào từ S3 và ghi kết quả ra S3 dưới dạng file.
-- Không cần triển khai Endpoint, chỉ chạy khi có job nên tối ưu chi phí cho xử lý định kỳ.
+##### Concepts
+- Run inference in batches rather than real-time requests.
+- Read input data from S3 and write results to S3 as files.
+- No need to deploy Endpoints, only runs when there's a job, optimizing costs for periodic processing.
 
-**Một inference cho một model:**
+**One inference for one model:**
 - model_fn
 - input_fn
 - predict_fn
 - output_fn
 
-**Các thành phần tối thiểu để tạo Sagemaker Batch Transform Job như sau:**
+**Minimum components to create a Sagemaker Batch Transform Job are as follows:**
 ```
 sagemaker_client = boto3.client('sagemaker')
 
@@ -67,77 +66,76 @@ request = {
         }
 sagemaker_client.create_transform_job(**request)
 ```
-Cấu hình chỉ định các thông tin sau:
+The configuration specifies the following information:
 
-- **"TransformJobName"**: Tên duy nhất của job batch transform.  
-- **"ModelName"**: Tên của mô hình đã được huấn luyện trước sẽ được dùng để suy luận. Mô hình này tham chiếu đến Docker image dùng để phục vụ mô hình, các artefact của mô hình đã tạo, và các biến môi trường đã khai báo.  
-- **"BatchStrategy"**: Chiến lược batch để thực hiện suy luận, có thể là `"SingleRecord"` hoặc `"MultiRecord"`.  
-- **"MaxConcurrentTransforms"**: Số lượng suy luận tối đa có thể chạy đồng thời.  
-- **"Environment"**: Một dictionary chứa các biến môi trường sẽ được truyền vào các EC2 instance.  
-- **"TransformInput"**: Dữ liệu đầu vào cho batch transform job, bao gồm vị trí trong S3, kiểu dữ liệu, loại nội dung, và kiểu nén.  
-- **"TransformOutput"**: Vị trí trong S3 để lưu trữ kết quả của batch transform job.  
-- **"TransformResources"**: Các tài nguyên EC2 được sử dụng cho batch transform job, bao gồm loại instance và số lượng instance.  
+- **"TransformJobName"**: Unique name of the batch transform job.  
+- **"ModelName"**: Name of the pre-trained model to be used for inference. This model references the Docker image used to serve the model, created model artifacts, and declared environment variables.  
+- **"BatchStrategy"**: Batch strategy for performing inference, can be `"SingleRecord"` or `"MultiRecord"`.  
+- **"MaxConcurrentTransforms"**: Maximum number of inferences that can run simultaneously.  
+- **"Environment"**: A dictionary containing environment variables that will be passed to EC2 instances.  
+- **"TransformInput"**: Input data for the batch transform job, including S3 location, data type, content type, and compression type.  
+- **"TransformOutput"**: S3 location to store the results of the batch transform job.  
+- **"TransformResources"**: EC2 resources used for the batch transform job, including instance type and instance count.  
 
-#### Điều gì xảy ra khi tạo Batch Transform Job?
-Dưới đây là các bước mà **AWS Sagemaker** sẽ thực hiện trong quá trình batch transform:
+#### What happens when creating a Batch Transform Job?
+Below are the steps that **AWS Sagemaker** will perform during the batch transform process:
 
-1. **Khởi tạo EC2**  
-   Sagemaker sẽ khởi chạy một EC2 instance đặc biệt theo các tham số được chỉ định trong `TransformResources`.
+1. **Initialize EC2**  
+   Sagemaker will launch a special EC2 instance according to parameters specified in `TransformResources`.
 
-2. **Thiết lập môi trường bằng Docker image**  
-   Instance sẽ được cấu hình bằng Docker image mà đối tượng `Model` tham chiếu tới.
+2. **Set up environment using Docker image**  
+   The instance will be configured with the Docker image that the `Model` object references.
 
-3. **Nạp biến môi trường**  
-   Sagemaker sẽ nạp các biến môi trường (`environment variables`) vào instance.  
-   - Lưu ý: Đối tượng `Model` cũng có thể chứa các biến môi trường riêng.  
-   - Nếu cùng một biến môi trường được định nghĩa cả trong `Model` và trong tham số `create_transform_job`, thì giá trị cuối cùng sẽ lấy từ `create_transform_job`.
+3. **Load environment variables**  
+   Sagemaker will load environment variables into the instance.  
+   - Note: The `Model` object may also contain its own environment variables.  
+   - If the same environment variable is defined in both `Model` and in the `create_transform_job` parameter, the final value will be taken from `create_transform_job`.
 
-4. **Kiểm tra sức khỏe (health check)**  
-   Sagemaker gửi yêu cầu ping để kiểm tra tình trạng của instance:  
-   - Nếu không vượt qua kiểm tra, job sẽ thất bại với trạng thái lỗi.  
-   - Nếu thành công, tiến trình sẽ chuyển sang bước tiếp theo.
+4. **Health check**  
+   Sagemaker sends a ping request to check the instance status:  
+   - If it doesn't pass the check, the job will fail with error status.  
+   - If successful, the process moves to the next step.
 
-5. **Xác định dữ liệu đầu vào**  
-   Thông qua tham số `TransformInput`, Sagemaker xác định dữ liệu cần xử lý.
+5. **Determine input data**  
+   Through the `TransformInput` parameter, Sagemaker determines the data to be processed.
 
-6. **Thực hiện dự đoán (inference)**  
-   Dựa vào các tham số như `MaxConcurrentTransforms`, `BatchStrategy`, và `MaxPayloadInMB`, Sagemaker bắt đầu gửi dữ liệu đầu vào đến endpoint `/invocation` của instance để thực hiện dự đoán.  
-   - Nếu các tham số này không được cung cấp trong `create_transform_job()`, Sagemaker sẽ cố gắng lấy từ endpoint `/execution-parameters` của instance đã được tạo.  
-   - Nếu endpoint này không tồn tại, Sagemaker sẽ sử dụng **giá trị mặc định**.  
+6. **Perform inference**  
+   Based on parameters like `MaxConcurrentTransforms`, `BatchStrategy`, and `MaxPayloadInMB`, Sagemaker starts sending input data to the `/invocation` endpoint of the instance to perform predictions.  
+   - If these parameters are not provided in `create_transform_job()`, Sagemaker will try to get them from the `/execution-parameters` endpoint of the created instance.  
+   - If this endpoint doesn't exist, Sagemaker will use **default values**.  
 
-7. **Lưu kết quả dự đoán**  
-   Tất cả kết quả sẽ được lưu lại theo cấu hình trong tham số `TransformOutput`.
+7. **Save prediction results**  
+   All results will be saved according to the configuration in the `TransformOutput` parameter.
 
-8. **Dừng instance**  
-   Sau khi hoàn tất, Sagemaker sẽ dừng instance.
+8. **Stop instance**  
+   After completion, Sagemaker will stop the instance.
 
-##### Lưu ý quan trọng
+##### Important Notes
 
-Sagemaker chia nhỏ dữ liệu đầu vào một cách **mù quáng**, không quan tâm đến logic đặc thù của chúng ta. Điều này có thể gây lỗi nếu dữ liệu có **tiêu đề (header)**, vì chỉ phần đầu tiên giữ lại header, các phần còn lại sẽ mất, dẫn đến job Batch Transform thất bại.  
+Sagemaker splits input data **blindly**, without considering our specific logic. This can cause errors if the data has **headers**, as only the first part retains the header, while the rest lose it, leading to Batch Transform job failure.  
 
-**Cách khắc phục:**
+**Solutions:**
 
-1. Tránh dùng tên tính năng trong suy luận, chỉ cần giữ đúng **thứ tự cột** giống dữ liệu huấn luyện.  
+1. Avoid using feature names in inference, just maintain the correct **column order** same as training data.  
 
-2. Chia nhỏ dữ liệu thủ công thành nhiều file, mỗi file đều có header, rồi cung cấp nhiều file đó cho Batch Transform (mỗi file đầu vào sẽ có output riêng).  
+2. Manually split data into multiple files, each with headers, then provide these multiple files to Batch Transform (each input file will have separate output).  
 
-##### Ứng dụng thực tế
-- Gắn nhãn/suy luận cho kho dữ liệu lịch sử (ví dụ: đánh giá ứng dụng đã thu thập trên S3).
-- Tạo đặc trưng nâng cao (feature enrichment) cho pipeline phân tích báo cáo.
-- Phân loại, phát hiện chủ đề/cảm xúc, lọc nội dung quy mô lớn.
-- Chạy lại suy luận theo đợt khi có phiên bản mô hình mới.
+##### Real-world Applications
+- Labeling/inference for historical data warehouse (e.g., app reviews collected on S3).
+- Creating advanced feature enrichment for analysis report pipelines.
+- Classification, topic/sentiment detection, large-scale content filtering.
+- Re-running inference in batches when there's a new model version.
 
-##### Quan trọng:
+##### Important:
 
-- Batch Transform không hỗ trợ dữ liệu đầu vào dạng CSV có chứa ký tự xuống dòng trong cùng một ô.
+- Batch Transform does not support CSV input data containing newline characters within the same cell.
 
-- Bạn có thể điều chỉnh kích thước mini-batch bằng cách cấu hình tham số BatchStrategy và MaxPayloadInMB.
+- You can adjust mini-batch size by configuring BatchStrategy and MaxPayloadInMB parameters.
 
-- Giá trị MaxPayloadInMB không được vượt quá 100 MB.
+- MaxPayloadInMB value must not exceed 100 MB.
 
-- Nếu bạn sử dụng thêm tham số MaxConcurrentTransforms, cần đảm bảo công thức:
+- If you use the additional MaxConcurrentTransforms parameter, ensure the formula:
 
 |   |
 |:-:|
 | `MaxConcurrentTransforms × MaxPayloadInMB ≤ 100 MB` |
-

@@ -1,29 +1,28 @@
 ---
-title : "Tạo job ETL bằng Glue job"
-date :  "2025-09-11" 
-weight : 1
-chapter : false
-pre : " <b> 5.1  </b> "
+title: "Create ETL job using Glue job"
+date: "2025-09-11"
+weight: 1
+chapter: false
+pre: " <b> 5.1  </b> "
 ---
 
+#### Create ETL job using Glue job
 
-#### Tạo job ETL bằng Glue job
-
-1. Truy cập giao diện **AWS Glue**
-- Chọn **ETL jobs**
-- Chọn **Visual ETL**
-- Chọn **Script editor**
+1. Access **AWS Glue** interface
+   - Select **ETL jobs**
+   - Select **Visual ETL**
+   - Select **Script editor**
 
 ![Create VPC](/images/5/9.png?featherlight=false&width=90pc)
 
-2. Với Engine: **Spark**
-- Chọn **Create script**
+2. With Engine: **Spark**
+   - Select **Create script**
+
 ![Create VPC](/images/5/10.png?featherlight=false&width=90pc)
 
-3. Tại giao diện ETL job:
-- Rename job thành: ```Chplay-transform-to-gold-layer```
-- Copy Scrip sau:
- 
+3. In the ETL job interface:
+   - Rename job to: `Chplay-transform-to-gold-layer`
+   - Copy the following script:
 
 ```python
 import sys
@@ -130,29 +129,26 @@ df_details_parsed = (
 job.commit()
 ```
 
-- Chọn **Save**
+   - Select **Save**
 
 ![Create VPC](/images/5/11.png?featherlight=false&width=90pc)
 
-4. Chuyển sang tab **Job details**
-- Chọn IAM role phù hợp
-
+4. Switch to **Job details** tab
+   - Select appropriate IAM role
 
 ![Create VPC](/images/5/12.png?featherlight=false&width=90pc)
 
 5. Run Job
-- Chọn **Run**
+   - Select **Run**
 
 ![Create VPC](/images/5/13.png?featherlight=false&width=90pc)
 
-
-6. Job run thành công
+6. Job runs successfully
 
 ![Create VPC](/images/5/15.png?featherlight=false&width=90pc)
 
-
-7. Check dữ liệu trên gold layer s3:
+7. Check data on gold layer S3:
 
 ![Create VPC](/images/5/14.png?featherlight=false&width=90pc)
 
-=> Dữ liệu được đổ sang và tối ưu lưu trữ ở định dạng Parquet
+⇒ Data is transferred and optimized for storage in Parquet format

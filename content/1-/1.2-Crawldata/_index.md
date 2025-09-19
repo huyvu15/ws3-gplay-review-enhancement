@@ -1,46 +1,47 @@
 ---
-title : "Crawl data"
+title : "Crawl Data"
 date :  "2025-09-11" 
 weight : 2 
 chapter : false
 pre : " <b> 1.2 </b> "
 ---
 
-#### Crawl data
+#### Crawl Data
 
 ![](https://tenten.vn/tin-tuc/wp-content/uploads/2023/06/Crawl-la-gi.png)
 
-Crawl data là quá trình tự động thu thập thông tin từ các trang web trên Internet. Để hiểu cách nó hoạt động, hãy tưởng tượng rằng bạn có một bot trên mạng Internet, nhiệm vụ của nó là cứ nhìn thấy cái gì có ích thì mang về.
+Crawling data is the process of automatically collecting information from websites on the Internet. To understand how it works, imagine you have a bot on the web whose job is to grab anything useful it finds.
 
-Bot bắt đầu bằng việc điều hướng qua các trang web, như một người du lịch dạo chơi qua các con đường trên bản đồ. Khi bot đến một trang web, nó quét qua nội dung của trang đó, tìm kiếm các phần tử trong DOM, bot phân tích các phần tử của trang web như các liên kết, văn bản, hình ảnh, video, và dữ liệu cấu trúc.
+The bot starts by navigating through web pages, much like a traveler exploring roads on a map. When it arrives at a page, it scans the page’s content and inspects DOM elements—analyzing links, text, images, videos, and structured data.
 
-Sau đó, bot thu thập dữ liệu từ các phần của trang web chứa thông tin bạn quan tâm, như việc bạn ghi chú lại những điều quan trọng khi đọc sách. Dữ liệu này có thể là văn bản, hình ảnh, video, hoặc dữ liệu có cấu trúc như bảng biểu.
+It then extracts the information of interest—similar to taking notes of key points while reading a book. This data can be text, images, videos, or structured data like tables.
 
-Quá trình này được lặp lại cho đến khi bot đã thu thập đủ thông tin hoặc đã truy cập qua tất cả các trang web trong danh sách. Đối với những trang web thường xuyên cập nhật thông tin, bạn có thể lập lịch cho bot để thực hiện lại quá trình crawl định kỳ để đảm bảo dữ liệu của bạn luôn cập nhật.
+The process continues until the bot has gathered enough information or has visited all pages in its list. For websites that frequently update content, you can schedule the bot to repeat the crawl periodically to ensure your dataset is always up-to-date.
 
-Tuy nhiên, việc crawl data cần phải được thực hiện cẩn thận và tuân thủ các quy định về bản quyền và chính sách riêng tư của các trang web. Vi phạm các quy định này có thể dẫn đến hậu quả pháp lý. Lời khuyên là nên check file robots.txt trước khi crawl.
+However, crawling must be done carefully and in compliance with copyright laws and the privacy policies of the websites. Violating these rules may result in legal consequences. A common best practice is to check the `robots.txt` file before crawling.
 
-Một dân cào dữ liệu chuyên nghiệp sẽ luôn định nghĩa "Cứ cái gì nhìn thấy trên web thì đều có thể lấy về bằng code được".
+A seasoned data crawler often says: *“Anything visible on the web can be retrieved with code.”*
 
-#### Các phương pháp để crawl data
+#### Methods of Crawling Data
 
-##### Dùng Ai
-Với sự nổi lên của các mô hình ngôn ngữ lớn thì việc crawl bằng Ai có lẽ cũng chẳng xa lạ gì?
+##### Using AI
+With the rise of large language models, AI-based crawling is no longer unfamiliar.
 
-**Nổi bật với:**
+**Popular tools include:**
 
-- Firecrawl
-- Apify
-- Rapid
-- Data Miner
+- Firecrawl  
+- Apify  
+- Rapid  
+- Data Miner  
 
-=> Thuận tiện nhanh gọn tuy nhiên sẽ phải trả phí để sử dụng
-#### Truyền thống
+➡️ Convenient and fast, but usually requires paid usage.  
 
-- Puppeteer
-- Selenium
-- Scrapy
-- Bs4
-- Playwright
+##### Traditional Approaches
 
-=> Khó dùng, phải code và dựng hạ tầng để sử dụng
+- Puppeteer  
+- Selenium  
+- Scrapy  
+- BeautifulSoup (Bs4)  
+- Playwright  
+
+➡️ More complex, requires coding and setting up infrastructure to use.  

@@ -1,28 +1,28 @@
 ---
-title : "Mô hình distilbert-sst2"
+title : "DistilBERT-SST2 Model"
 date :  "2025-09-11" 
 weight : 5
 chapter : false
 pre : " <b> 1.5 </b> "
 ---
 
-#### Mô hình distilbert-sst2
+#### DistilBERT-SST2 Model
 
 ![](https://www.mdpi.com/electronics/electronics-09-00483/article_deploy/html/images/electronics-09-00483-g001.png)
 
-##### Giới thiệu
-distilBERT-SST2 là mô hình DistilBERT được tinh chỉnh trên tập dữ liệu SST-2 để phân tích cảm xúc nhị phân (tích cực/tiêu cực) ở cấp câu. Mô hình nhỏ gọn, suy luận nhanh, độ chính xác tốt cho các bài toán sentiment phổ biến.
+##### Introduction
+DistilBERT-SST2 is a DistilBERT model fine-tuned on the SST-2 dataset for binary sentiment analysis (positive/negative) at the sentence level. The model is compact, fast inference, with good accuracy for common sentiment analysis tasks.
 
-##### Khái niệm
-- DistilBERT là phiên bản rút gọn của BERT qua kỹ thuật knowledge distillation: ít tham số hơn (~40%), suy luận nhanh hơn (đến ~60%) nhưng giữ phần lớn hiệu năng của BERT.
-- SST-2 (Stanford Sentiment Treebank v2) gán nhãn cảm xúc nhị phân cho câu; đầu ra mô hình là xác suất/nhãn Positive hoặc Negative.
-- Kết quả thường lấy theo Softmax trên hai lớp; có thể tùy ngưỡng cho các mục tiêu kinh doanh khác nhau.
+##### Concepts
+- DistilBERT is a distilled version of BERT through knowledge distillation technique: fewer parameters (~40% less), faster inference (up to ~60% faster) while retaining most of BERT's performance.
+- SST-2 (Stanford Sentiment Treebank v2) assigns binary sentiment labels to sentences; the model output is probability/label of Positive or Negative.
+- Results are typically obtained using Softmax over two classes; thresholds can be adjusted for different business objectives.
 
-##### Phân loại văn bản thành tích cực tiêu cực
+##### Text Classification into Positive/Negative
 
-Sở dĩ dùng model trên do dữ liệu lấy về có cột content chứa đánh giá của người dùng
+The reason for using this model is that the collected data has a content column containing user reviews.
 
-##### Cách triển khai nhanh
+##### Quick Implementation
 
 **Hugging Face Transformers:**
 ```python
@@ -33,11 +33,10 @@ print(classifier("This product is awesome!"))
 
 Output: ```{'label': 'POSITIVE', 'score': 0.999}```
 
-Triển khai dễ dàng trong Flask/FastAPI để làm API phục vụ real-time.
+Easy deployment in Flask/FastAPI to create APIs for real-time serving.
 
-
-##### Ứng dụng thực tế
-- Phân tích cảm xúc đánh giá ứng dụng, phản hồi khách hàng, bài đăng mạng xã hội.
-- Cảnh báo sớm và ưu tiên xử lý phản hồi tiêu cực trong quy trình hỗ trợ.
-- Theo dõi xu hướng cảm xúc theo thời gian cho báo cáo thương hiệu/sản phẩm.
-- Là bước tiền xử lý cho các pipeline nâng cao: phân loại chủ đề, định tuyến ticket, tóm tắt.
+##### Real-world Applications
+- Sentiment analysis of app reviews, customer feedback, social media posts.
+- Early warning and prioritization of negative feedback processing in support workflows.
+- Monitoring sentiment trends over time for brand/product reporting.
+- Preprocessing step for advanced pipelines: topic classification, ticket routing, summarization.

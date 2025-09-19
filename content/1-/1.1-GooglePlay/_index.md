@@ -6,65 +6,61 @@ chapter : false
 pre : " <b> 1.1 </b> "
 ---
 
-#### Google Play là gì
+#### What is Google Play?
 
 ![](https://logos-world.net/wp-content/uploads/2020/12/Google-Play-Logo-2016.png)
 
-Khi nói về hệ điều hành Android, không thể không nhắc đến Google Play. Đây không chỉ đơn thuần là một "kho ứng dụng", mà là một hệ sinh thái nội dung số toàn diện, đóng vai trò là cổng chính kết nối hàng tỷ người dùng với thế giới ứng dụng, trò chơi và giải trí kỹ thuật số. Được phát triển và duy trì bởi Google, Google Play là nền tảng phân phối chính thức và đáng tin cậy nhất dành cho các thiết bị chạy hệ điều hành Android.
+When talking about the Android operating system, Google Play is an inseparable part of the conversation. It is not just an "app store," but a complete digital content ecosystem that serves as the main gateway connecting billions of users to the world of apps, games, and digital entertainment. Developed and maintained by Google, Google Play is the official and most trusted distribution platform for Android devices.
 
-##### Từ Android Market đến một trung tâm nội dung toàn diện
-Tiền thân của Google Play là Android Market, ra mắt vào năm 2008. Ban đầu, đây chỉ là một nơi khiêm tốn để người dùng tải về các ứng dụng cơ bản. Tuy nhiên, nhận thấy tiềm năng to lớn, vào tháng 3 năm 2012, Google đã thực hiện một cuộc tái cấu trúc mang tính bước ngoặt. Họ hợp nhất Android Market, Google Music, và Google eBookstore thành một nền tảng duy nhất dưới cái tên Google Play.
+##### From Android Market to a Comprehensive Content Hub
+The predecessor of Google Play was **Android Market**, launched in 2008. Initially, it was just a modest place for users to download basic apps. However, recognizing its vast potential, in March 2012, Google carried out a groundbreaking restructuring. They merged Android Market, Google Music, and Google eBookstore into a single platform under the name **Google Play**.
 
-Sự thay đổi này không chỉ là về tên gọi. Nó đánh dấu một sự chuyển mình chiến lược, biến Google Play từ một kho ứng dụng đơn thuần thành một trung tâm giải trí đa phương tiện, nơi người dùng có thể:
+This change was not only about rebranding. It marked a strategic transformation, turning Google Play from a simple app repository into a multimedia entertainment hub where users can:
 
-- Tải ứng dụng và trò chơi: Với hàng triệu lựa chọn, từ các công cụ làm việc, ứng dụng học tập, mạng xã hội cho đến các tựa game bom tấn.
+- **Download apps and games:** With millions of options ranging from productivity tools, learning apps, and social networks to blockbuster games.  
+- **Enjoy movies and TV shows:** Purchase or rent the latest releases.  
+- **Read books and magazines:** Explore a massive e-book library.  
+- **Listen to music and podcasts:** (depending on region).  
 
-- Thưởng thức phim và chương trình TV: Mua hoặc thuê các bộ phim mới nhất.
-
-- Đọc sách và tạp chí: Khám phá một thư viện sách điện tử khổng lồ.
-
-- Nghe nhạc và podcast: (Tùy thuộc vào khu vực).
-
-##### Các trường dữ liệu thu thập từ Google Play
+##### Data Fields Collected from Google Play
 
 **app_details:**
 
-
- Thông tin cơ bản
-| Trường          | Giá trị |
-|-----------------|---------|
+ Basic Information  
+| Field           | Value |
+|-----------------|-------|
 | title           | Facebook |
 | summary         | Explore the things you love |
-| description     | (mô tả dài, nhiều dòng) |
-| descriptionHTML | (mô tả có HTML) |
+| description     | (long multi-line description) |
+| descriptionHTML | (HTML-formatted description) |
 
- Cài đặt & Đánh giá
-| Trường        | Giá trị |
-|---------------|---------|
-| installs      | 10,000,000,000+ |
-| minInstalls   | 10000000000 |
-| realInstalls  | 10865147603 |
-| score         | 4.3964653 |
-| ratings       | 172790178 |
-| reviews       | 4331694 |
-| histogram     | [17235822, 2481913, 6540240, 14815291, 131716880] |
+ Installations & Ratings  
+| Field        | Value |
+|--------------|-------|
+| installs     | 10,000,000,000+ |
+| minInstalls  | 10000000000 |
+| realInstalls | 10865147603 |
+| score        | 4.3964653 |
+| ratings      | 172790178 |
+| reviews      | 4331694 |
+| histogram    | [17235822, 2481913, 6540240, 14815291, 131716880] |
 
- Giá & Thanh toán
-| Trường              | Giá trị |
-|---------------------|---------|
-| price               | 0 |
-| free                | true |
-| currency            | USD |
-| sale                | false |
-| saleTime            | null |
-| originalPrice       | null |
-| saleText            | null |
-| offersIAP           | true |
-| inAppProductPrice   | $0.05 - $10,000.00 per item |
+ Pricing & Payments  
+| Field             | Value |
+|-------------------|-------|
+| price             | 0 |
+| free              | true |
+| currency          | USD |
+| sale              | false |
+| saleTime          | null |
+| originalPrice     | null |
+| saleText          | null |
+| offersIAP         | true |
+| inAppProductPrice | $0.05 - $10,000.00 per item |
 
- Nhà phát triển
-| Trường           | Giá trị |
-|------------------|---------|
+ Developer Information  
+| Field            | Value |
+|------------------|-------|
 | developer        | Meta Platforms, Inc. |
 | developerId      | Meta+Platforms,+Inc. |
 | developerEmail   | facebook.android@fb.com |
@@ -72,49 +68,49 @@ Sự thay đổi này không chỉ là về tên gọi. Nó đánh dấu một s
 | developerAddress | null |
 | privacyPolicy    | https://www.facebook.com/about/privacy/ |
 
- Phân loại
-| Trường     | Giá trị |
-|------------|---------|
+ Categorization  
+| Field      | Value |
+|------------|-------|
 | genre      | Social |
 | genreId    | SOCIAL |
 | categories | [{"name": "Social", "id": "SOCIAL"}] |
 
- Hình ảnh & Media
-| Trường       | Giá trị |
-|--------------|---------|
-| icon         | ![icon](https://play-lh.googleusercontent.com/KCMTYuiTrKom4Vyf0G4foetVOwhKWzNbHWumV73IXexAIy5TTgZipL52WTt8ICL-oIo) |
-| headerImage  | ![header](https://play-lh.googleusercontent.com/GQXolHad8JJu_qR90bF9krWLP66RimpNgskSMXEcmoZ1znWfgsB8uCtM1uGC0n_lMA) |
-| screenshots  | Danh sách URL (8 ảnh) |
-| video        | null |
-| videoImage   | null |
+ Images & Media  
+| Field       | Value |
+|-------------|-------|
+| icon        | ![icon](https://play-lh.googleusercontent.com/KCMTYuiTrKom4Vyf0G4foetVOwhKWzNbHWumV73IXexAIy5TTgZipL52WTt8ICL-oIo) |
+| headerImage | ![header](https://play-lh.googleusercontent.com/GQXolHad8JJu_qR90bF9krWLP66RimpNgskSMXEcmoZ1znWfgsB8uCtM1uGC0n_lMA) |
+| screenshots | List of URLs (8 images) |
+| video       | null |
+| videoImage  | null |
 
- Nội dung & Quảng cáo
-| Trường                  | Giá trị |
-|--------------------------|---------|
+ Content & Ads  
+| Field                   | Value |
+|--------------------------|-------|
 | contentRating            | Teen |
 | contentRatingDescription | null |
 | adSupported              | true |
 | containsAds              | true |
 
- Thông tin phát hành & cập nhật
-| Trường        | Giá trị |
-|---------------|---------|
-| released      | null |
-| lastUpdatedOn | Sep 10, 2025 |
-| updated       | 1757465488 |
-| version       | Varies with device |
+ Release & Update Information  
+| Field        | Value |
+|--------------|-------|
+| released     | null |
+| lastUpdatedOn| Sep 10, 2025 |
+| updated      | 1757465488 |
+| version      | Varies with device |
 
- Thông tin nhận dạng
-| Trường        | Giá trị |
-|---------------|---------|
-| appId         | com.facebook.katana |
-| url           | https://play.google.com/store/apps/details?id=com.facebook.katana |
-| package_name  | com.facebook.katana |
+ Identification Information  
+| Field        | Value |
+|--------------|-------|
+| appId        | com.facebook.katana |
+| url          | https://play.google.com/store/apps/details?id=com.facebook.katana |
+| package_name | com.facebook.katana |
 
 **app_review:**
 
-| Trường               | Giá trị |
-|-----------------------|---------|
+| Field                | Value |
+|-----------------------|-------|
 | package_name          | com.facebook.katana |
 | app_title             | Facebook |
 | url                   | [Link](https://play.google.com/store/apps/details?id=com.facebook.katana) |
@@ -131,14 +127,10 @@ Sự thay đổi này không chỉ là về tên gọi. Nó đánh dấu một s
 | repliedAt             | null |
 | crawled_at            | 2025-09-10 07:38:40 |
 
-##### Các sự thật về Google Play
+##### Fun Facts about Google Play
 
-1. Mỗi ngày có khoảng 5000 game được release trên Google Play
-
-2. Google Play có khoảng 2,066,635 ứng dụng tính đến năm 2025. 
-
-3. Tỉ lệ app vs game: trong số này, khoảng 249,102 là game; phần còn lại là các ứng dụng. 
-
-4. Ứng dụng miễn phí vs trả phí: khoảng 96.98% ứng dụng là miễn phí; chỉ ~3% là trả phí. 
-
-5. Số ứng dụng được phát hành mới mỗi ngày: ~1,500 ứng dụng mới/ngày được thêm vào Google Play. 
+1. Around **5,000 games** are released on Google Play every day.  
+2. As of 2025, Google Play hosts about **2,066,635 apps**.  
+3. App vs Game ratio: about **249,102 are games**, while the rest are apps.  
+4. Free vs Paid apps: roughly **96.98% of apps are free**, only ~3% are paid.  
+5. New app releases per day: approximately **1,500 new apps** are added to Google Play daily.  

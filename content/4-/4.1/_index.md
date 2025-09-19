@@ -1,36 +1,32 @@
 ---
-title : "Tạo lambda lấy data app_details"
-date :  "2025-09-11" 
-weight : 1
-chapter : false
-pre : " <b> 4.1 </b> "
+title: "Create lambda to get app_details data"
+date: "2025-09-11"
+weight: 1
+chapter: false
+pre: " <b> 4.1 </b> "
 ---
 
+#### Create lambda to collect app_details data
 
-#### Tạo lambda thu thập dữ liệu app_details
+1. Access Lambda Function service
 
-1. Truy cập service Lambda Function
+   - Select **Function**
+   - Select **Create function**
+   - Name the function **crawl-app-details-maket-chplay**
+   - Runtime select **Python3.12**
+   - Role: Select a role with sufficient permissions :>
 
-- Chọn **Funtion**
-- Chọn **Create funtion**
-- Đặt tên function là **crawl-app-details-maket-chplay**
-- Runtime chọn **Python3.12**
-- Role: Chọn role đủ quyền :>
-
-2. Add layer cho lambda
-- Kéo xuống cuối chọn: **Add a layer** 
+2. Add layer for lambda
+   - Scroll down to the bottom and select: **Add a layer**
 
 ![Create VPC](/images/2/9.png?featherlight=false&width=90pc)
 
-- Chọn **Custum layers**
-- Chọn **google_play_scrape**
+   - Select **Custom layers**
+   - Select **google_play_scrape**
 
 ![Create VPC](/images/2/10.png?featherlight=false&width=90pc)
 
-
-
-3. Thêm code vào lambda:
-
+3. Add code to lambda:
 
 ```python
 import json
@@ -89,5 +85,4 @@ def lambda_handler(event, context):
     }
 ```
 
-=> Mỗi khi run code nó sẽ lấy dữ liệu app_details thay đổi theo từng ngày
-
+⇒ Each time the code runs, it will get app_details data that changes daily
