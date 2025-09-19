@@ -65,7 +65,7 @@ def lambda_handler(event, context):
     today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
     crawled_at = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
-    days = 120
+    days = 7
     start_date = datetime.datetime.utcnow() - datetime.timedelta(days=days)
 
     results = []
@@ -140,7 +140,9 @@ def lambda_handler(event, context):
     }
 ```
 
-=> Mỗi khi run code nó sẽ lấy dữ liệu app_details thay đổi theo từng tuần, lấy theo tuần do thông thường app sẽ ít review nếu đã release lâu ngày.
+=> Mỗi khi run code nó sẽ lấy dữ liệu app_review theo từng tuần, lấy theo tuần do thông thường app sẽ ít review nếu đã release lâu ngày.
+
+Ban đầu nên lấy dữ liệu khoảng 1 - 2 năm trở lại để tiện phân tích.
 
 
 
