@@ -1,9 +1,9 @@
 ---
 title : "Tạo 1 IAM role đủ quyền"
 date :  "2025-09-11" 
-weight : 4
+weight : 1
 chapter : false
-pre : " <b> 2.4 </b> "
+pre : " <b> 2.1 </b> "
 ---
 
 #### Tạo 1 IAM role đủ quyền

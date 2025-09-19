@@ -1,9 +1,9 @@
 ---
 title : "Tạo S3 Bucket"
 date :  "2025-09-11" 
-weight : 1
+weight : 2
 chapter : false
-pre : " <b> 2.1 </b> "
+pre : " <b> 2.2 </b> "
 ---
 
 #### Tạo S3 Bucket

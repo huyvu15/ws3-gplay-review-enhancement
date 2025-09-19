@@ -15,6 +15,7 @@ Trong bài thực hành này, chúng ta sẽ xây dựng một mô hình theo s�
 
 #### Nội dung
 
-1. [Tạo S3 Bucket](https://000003.awsstudygroup.com/vi/3-prerequiste/3.1-createvpc/)
-2. [Add Layer google_play_scrape](https://000003.awsstudygroup.com/vi/3-prerequiste/3.2-createsubnet/)
-3. [Tạo model distibert-sst2 và đẩy lên s3](https://000003.awsstudygroup.com/vi/3-prerequiste/3.3-createigw/)
+1. [Tạo IAM role](/2-/2.4-CreateIAM)
+2. [Tạo S3 Bucket](/2-/2.1-CreateS3Bucket)
+3. [Add Layer google_play_scrape](/2-/2.2-Createlayer)
+4. [Tạo model distibert-sst2 và đẩy lên s3](/2-/2.3-Createmodel)

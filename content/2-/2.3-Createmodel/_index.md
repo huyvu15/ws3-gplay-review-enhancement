@@ -1,9 +1,9 @@
 ---
 title : "Tạo model distilbert-sst2 và đẩy lên s3"
 date :  "2025-09-11" 
-weight : 3
+weight : 4
 chapter : false
-pre : " <b> 2.3 </b> "
+pre : " <b> 2.4 </b> "
 ---
 
 #### Tải model về máy

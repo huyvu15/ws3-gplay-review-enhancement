@@ -67,19 +67,18 @@ request = {
         }
 sagemaker_client.create_transform_job(**request)
 ```
-The configuration specifies the following details:
+Cấu hình chỉ định các thông tin sau:
 
-- "TransformJobName": The unique name of the batch transform job.
-- "ModelName": The name of the pre-trained model that will be used for the inferences. This model refers to our Docker image to be used while serving the model, produced model artefacts, and environment variables we specified.
-- "BatchStrategy": The batch strategy to use for the inferences, which can be either "SingleRecord" or "MultiRecord".
-- "MaxConcurrentTransforms": The maximum number of inferences that can be performed concurrently.
-- "Environment": A dictionary of environment variables that will be passed to the EC2 instances.
-- "TransformInput": The input data for the batch transform job, including the S3 location, data type, content type, and compression type.
-- "TransformOutput": The S3 location where the results of the batch transform job will be stored.
-- "TransformResources": The EC2 resources to be used for the batch transform job, including the instance type and the number of instances.
+- **"TransformJobName"**: Tên duy nhất của job batch transform.  
+- **"ModelName"**: Tên của mô hình đã được huấn luyện trước sẽ được dùng để suy luận. Mô hình này tham chiếu đến Docker image dùng để phục vụ mô hình, các artefact của mô hình đã tạo, và các biến môi trường đã khai báo.  
+- **"BatchStrategy"**: Chiến lược batch để thực hiện suy luận, có thể là `"SingleRecord"` hoặc `"MultiRecord"`.  
+- **"MaxConcurrentTransforms"**: Số lượng suy luận tối đa có thể chạy đồng thời.  
+- **"Environment"**: Một dictionary chứa các biến môi trường sẽ được truyền vào các EC2 instance.  
+- **"TransformInput"**: Dữ liệu đầu vào cho batch transform job, bao gồm vị trí trong S3, kiểu dữ liệu, loại nội dung, và kiểu nén.  
+- **"TransformOutput"**: Vị trí trong S3 để lưu trữ kết quả của batch transform job.  
+- **"TransformResources"**: Các tài nguyên EC2 được sử dụng cho batch transform job, bao gồm loại instance và số lượng instance.  
 
-
-#### What Happens After We Created Batch Transform Job?
+#### Điều gì xảy ra khi tạo Batch Transform Job?
 Dưới đây là các bước mà **AWS Sagemaker** sẽ thực hiện trong quá trình batch transform:
 
 1. **Khởi tạo EC2**  
@@ -122,8 +121,6 @@ Sagemaker chia nhỏ dữ liệu đầu vào một cách **mù quáng**, không 
 
 2. Chia nhỏ dữ liệu thủ công thành nhiều file, mỗi file đều có header, rồi cung cấp nhiều file đó cho Batch Transform (mỗi file đầu vào sẽ có output riêng).  
 
-
-
 ##### Ứng dụng thực tế
 - Gắn nhãn/suy luận cho kho dữ liệu lịch sử (ví dụ: đánh giá ứng dụng đã thu thập trên S3).
 - Tạo đặc trưng nâng cao (feature enrichment) cho pipeline phân tích báo cáo.
@@ -140,6 +137,7 @@ Sagemaker chia nhỏ dữ liệu đầu vào một cách **mù quáng**, không 
 
 - Nếu bạn sử dụng thêm tham số MaxConcurrentTransforms, cần đảm bảo công thức:
 
-<p align="center">
-  <code>MaxConcurrentTransforms × MaxPayloadInMB ≤ 100 MB</code>
-</p>
+|   |
+|:-:|
+| `MaxConcurrentTransforms × MaxPayloadInMB ≤ 100 MB` |
+
