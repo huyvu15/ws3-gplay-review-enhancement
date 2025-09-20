@@ -20,5 +20,5 @@ Trên là một số dữ liệu mình đã thêm vào từ trước
 
 #### Nội dung 
 
-1. [Tạo job ETL bằng Glue job](4.1-createec2/)
-2. [Tạo crawler cho layer chplay-gold](4.2-connectec2/)
+1. [Tạo job ETL bằng Glue job](/5-/5.1)
+2. [Tạo crawler cho layer chplay-gold](/5-/5.1)

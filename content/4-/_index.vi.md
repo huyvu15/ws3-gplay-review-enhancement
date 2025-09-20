@@ -12,8 +12,8 @@ pre : " <b> 4. </b> "
 
 #### Nội dung
 
-1. [Các key cần chuẩn bị]()
-2. [Tạo lambda lấy data **app_details**]()
-3. [Tạo lambda lấy data **app_reviews**]()
-4. [Tạo lambda trigger model xử lý dữ liệu]()
+1. [Các key cần chuẩn bị](/4-/4.0/)
+2. [Tạo lambda lấy data **app_details**](/4-/4.1/)
+3. [Tạo lambda lấy data **app_reviews**](/4-/4.2/)
+4. [Tạo lambda trigger model xử lý dữ liệu](/4-/4.3/)
 5. [Tạo job Step Function và EventBridge](/4-/4.4/)

@@ -16,5 +16,5 @@ The above shows some sample data that I added earlier.
 
 #### Content 
 
-1. [Create an ETL Job with Glue Job](4.1-createec2/)  
-2. [Create a Crawler for the chplay-gold Layer](4.2-connectec2/)  
+1. [Create an ETL Job with Glue Job](/5-/5.1)  
+2. [Create a Crawler for the chplay-gold Layer](/5-/5.2)

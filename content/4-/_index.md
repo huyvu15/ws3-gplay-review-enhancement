@@ -12,8 +12,8 @@ For the system to operate smoothly, we first need **Lambda functions** to perfor
 
 #### Content
 
-1. [Keys to prepare]()
-2. [Create lambda to get **app_details** data]()
-3. [Create lambda to get **app_reviews** data]()
-4. [Create lambda to trigger data processing model]()
+1. [Keys to prepare](/4-/4.0/)
+2. [Create lambda to get **app_details** data](/4-/4.1/)
+3. [Create lambda to get **app_reviews** data](/4-/4.2/)
+4. [Create lambda to trigger data processing model](/4-/4.3/)
 5. [Create Step Function job and EventBridge](/4-/4.4/)
